@@ -1,5 +1,5 @@
 # Food Delivery
-### Food Delivery web application will be used to order products.
+Food Delivery web application will be used to order products.
 # Description
 The web application is being developed for the FoodDel company with the aim of creating online delivery of products in Ukraine.
 # Getting Started
