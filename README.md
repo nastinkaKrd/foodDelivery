@@ -12,7 +12,8 @@ The web application is being developed for the FoodDel company with the aim of c
 For installing project you must enter this command:
 > git clone https://github.com/nastinkaKrd/foodDelivery.git
 ## Executing program
-For executing program you must run FoodDeliveryApplication Class.
+- For executing program you must run FoodDeliveryApplication Class
+- Write command in the terminal: mvn clean install
 # Author
 Anastasiia Kyrdiak \
 nastinka352@gmail.com
