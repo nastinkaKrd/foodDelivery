@@ -1,11 +1,14 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "companies")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Company {
     @Id
     @Column(name = "id")

@@ -1,8 +1,12 @@
 package com.project.food_delivery.RequestBodies;
 
-import com.project.food_delivery.models.Address;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UsernameAndAddress {
     String username;
-    Address address;
+    Integer address_id;
 }

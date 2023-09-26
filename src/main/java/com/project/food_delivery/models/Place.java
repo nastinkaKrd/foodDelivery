@@ -1,16 +1,24 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "places")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Place {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    public Place(String name, PlaceCategory placeCategory) {
+        this.name = name;
+        this.placeCategory = placeCategory;
+    }
 
     @Column(name = "name")
     private String name;

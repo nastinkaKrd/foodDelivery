@@ -1,11 +1,14 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class User {
     @Id
     @Column(name = "id")

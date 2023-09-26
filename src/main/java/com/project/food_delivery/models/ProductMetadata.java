@@ -1,13 +1,15 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Generated;
+import lombok.*;
 
 
 @Entity
 @Table(name = "product_metadata")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class ProductMetadata {
     @Id
     @Column(name = "id")

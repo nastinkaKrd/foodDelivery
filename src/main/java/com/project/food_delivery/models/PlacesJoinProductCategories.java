@@ -1,11 +1,14 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "places_join_product_categories")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class PlacesJoinProductCategories {
     @Id
     @Column(name = "id")

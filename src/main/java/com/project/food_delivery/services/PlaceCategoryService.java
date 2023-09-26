@@ -1,9 +1,11 @@
 package com.project.food_delivery.services;
 
-import com.project.food_delivery.models.PlaceCategory;
+import com.project.food_delivery.dtos.PlaceCategoryDTO;
 
 import java.util.List;
 
 public interface PlaceCategoryService {
-    List<PlaceCategory> getPlaceCategories();
+    List<PlaceCategoryDTO> getPlaceCategories();
+
+    void addPlaceCategory(String placeCategory);
 }

@@ -1,11 +1,14 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "products_join_companies")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class ProductsJoinCompanies {
     @Id
     @Column(name = "id")
@@ -19,4 +22,9 @@ public class ProductsJoinCompanies {
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
+
+    public ProductsJoinCompanies(ProductMetadata productMetadata, Company company) {
+        this.productMetadata = productMetadata;
+        this.company = company;
+    }
 }

@@ -1,11 +1,14 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "product_characteristics")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class ProductCharacteristic {
     @Id
     @Column(name = "id")
@@ -19,7 +22,7 @@ public class ProductCharacteristic {
     private Float weight;
 
     @Column(name = "available_amount")
-    private Integer availableAmount ;
+    private Integer availableAmount;
 
     @Column(name = "weight_measurement")
     @Enumerated(EnumType.STRING)

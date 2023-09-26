@@ -1,15 +1,13 @@
 package com.project.food_delivery.services;
 
 import com.project.food_delivery.RequestBodies.PlaceData;
-import com.project.food_delivery.models.Place;
-
-
+import com.project.food_delivery.dtos.PlaceDTO;
 import java.util.List;
 
 public interface PlaceService {
-    List<Place> getPlacesByPlaceCategory(String category);
+    List<PlaceDTO> getPlacesByPlaceCategory(String category);
 
-    List<Place> getPlacesByCity(String city);
+    List<PlaceDTO> getPlacesByCity(String city);
 
     void addPlace(PlaceData placeData);
 }

@@ -1,11 +1,13 @@
 package com.project.food_delivery.services;
 
-import com.project.food_delivery.models.ProductCategory;
+import com.project.food_delivery.RequestBodies.ProductCategoryAndDescription;
+import com.project.food_delivery.dtos.ProductCategoryDTO;
+
 
 import java.util.List;
 
 public interface ProductCategoryService {
-    List<ProductCategory> getProductCategories();
+    List<ProductCategoryDTO> getProductCategories();
 
-    void addProductCategory(ProductCategory productCategory);
+    void addProductCategory(ProductCategoryAndDescription productCategoryAndDescription);
 }

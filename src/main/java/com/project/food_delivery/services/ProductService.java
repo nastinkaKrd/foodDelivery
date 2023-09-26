@@ -6,7 +6,6 @@ import com.project.food_delivery.models.ProductMetadata;
 import java.util.List;
 
 public interface ProductService {
-    List<ProductMetadata> getProductsByProductCategory(String category);
 
     void addProduct(ProductData productData);
 }

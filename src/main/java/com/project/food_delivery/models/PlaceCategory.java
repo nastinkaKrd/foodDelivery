@@ -7,14 +7,19 @@ import lombok.*;
 @Table(name = "place_categories")
 @ToString
 @RequiredArgsConstructor
+@Getter
+@Setter
 public class PlaceCategory {
+    public PlaceCategory(String placeCategory) {
+        this.placeCategory = placeCategory;
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "place_category")
-    @Enumerated(EnumType.STRING)
-    private PlaceCategoryValues placeCategoryValues;
+    private String placeCategory;
 
 }

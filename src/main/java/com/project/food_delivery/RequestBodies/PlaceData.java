@@ -1,9 +1,13 @@
 package com.project.food_delivery.RequestBodies;
 
-import com.project.food_delivery.models.Address;
+import com.project.food_delivery.dtos.AddressDTO;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class PlaceData {
     String name;
-    Address address;
+    AddressDTO address;
     String placeCategory;
 }

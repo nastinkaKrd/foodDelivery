@@ -1,13 +1,16 @@
 package com.project.food_delivery.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-@Data
+@RequiredArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Order {
     @Id
     @Column(name = "id")
