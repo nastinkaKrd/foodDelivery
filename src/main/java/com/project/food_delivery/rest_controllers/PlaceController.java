@@ -1,7 +1,7 @@
 package com.project.food_delivery.rest_controllers;
 
-import com.project.food_delivery.RequestBodies.PlaceData;
-import com.project.food_delivery.dtos.PlaceDTO;
+import com.project.food_delivery.dtos.PlaceDataDto;
+import com.project.food_delivery.dtos.PlaceDto;
 import com.project.food_delivery.services.PlaceService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,21 +13,21 @@ import java.util.List;
 @RequestMapping("/places")
 public class PlaceController {
     private final PlaceService placeService;
-    @GetMapping("?place-category='category'")
+    @GetMapping("/category")
     @ResponseStatus(HttpStatus.OK)
-    public List<PlaceDTO> getPlacesByPlaceCategory(@RequestParam(name = "category") String category){
+    public List<PlaceDto> getPlacesByPlaceCategory(@RequestParam(name = "category") String category){
         return placeService.getPlacesByPlaceCategory(category);
     }
 
-    @GetMapping("?city='city'")
+    @GetMapping("/city")
     @ResponseStatus(HttpStatus.OK)
-    public List<PlaceDTO> getPlacesByCity(@RequestParam(name = "city") String city){
+    public List<PlaceDto> getPlacesByCity(@RequestParam(name = "city") String city){
         return placeService.getPlacesByCity(city);
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addPlace(@RequestBody PlaceData placeData){
+    public void addPlace(@RequestBody PlaceDataDto placeData){
         placeService.addPlace(placeData);
     }
 }

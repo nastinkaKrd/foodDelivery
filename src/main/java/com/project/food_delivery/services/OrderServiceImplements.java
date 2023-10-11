@@ -1,8 +1,8 @@
 package com.project.food_delivery.services;
 
 import com.project.food_delivery.dtos.OrderDto;
+import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
 import com.project.food_delivery.mapper_interfaces.OrderMapper;
-import com.project.food_delivery.models.Basket;
 import com.project.food_delivery.models.Order;
 import com.project.food_delivery.models.Status;
 import com.project.food_delivery.models.User;
@@ -22,15 +22,15 @@ public class OrderServiceImplements implements OrderService{
     public List<OrderDto> getListOfOrdersByUsername(String username) {
         User user = userServiceImplements.getUserByUsername(username);
         if (orderRepository.findOrdersByUser(user).isEmpty()){
-            //Will be handler exception
+            throw new ApiRequestExceptionNotFound("You don't have orders");
         }
         return orderRepository.findOrdersByUser(user).stream().map(orderMapper::orderToDto).toList();
     }
 
-    @Override
+   /* @Override
     public void buildNewOrderFromBasket(Basket basket) {
 
-    }
+    }*/
 
     @Override
     public String changeOrderStatus(String status, String orderId) {
@@ -42,8 +42,7 @@ public class OrderServiceImplements implements OrderService{
             orderRepository.save(order);
             return orderRepository.findById(id).get().getStatus().toString();
         }else {
-            //Will be handler exception
+            throw new ApiRequestExceptionNotFound("This order is not found or you wrote not right status (Please check it)");
         }
-        return orderRepository.findById(id).get().getStatus().toString();//will be deleted
     }
 }

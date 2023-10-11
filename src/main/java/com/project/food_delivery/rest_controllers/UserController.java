@@ -1,9 +1,8 @@
 package com.project.food_delivery.rest_controllers;
 
-import com.project.food_delivery.RequestBodies.UsernameAndAddress;
-import com.project.food_delivery.dtos.AddressDTO;
-import com.project.food_delivery.response_bodies.UserInformation;
-import com.project.food_delivery.services.UserJoinAddressService;
+import com.project.food_delivery.dtos.UsernameAndAddressDto;
+import com.project.food_delivery.dtos.AddressDto;
+import com.project.food_delivery.dtos.UserInformationDto;
 import com.project.food_delivery.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,21 +12,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
-    private final UserJoinAddressService userJoinAddressService;
     @GetMapping("/{username}")
-    public UserInformation getUserInformationByUsername(@PathVariable(name = "username") String username){
-        return userJoinAddressService.findUserInformationByUsername(username);
+    public UserInformationDto getUserInformationByUsername(@PathVariable(name = "username") String username){
+        return userService.findUserInformationByUsername(username);
     }
 
     @PutMapping("/{username}")
-    public AddressDTO changeUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDTO address
+    public AddressDto changeUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto address
             , @RequestParam(name = "address_id") Integer address_id){
-        return userJoinAddressService.changeUserAddressByUsername(username, address, address_id);
+        return userService.changeUserAddressByUsername(username, address, address_id);
     }
 
     @DeleteMapping("/address")
-    public void deleteUserAddressByUsername(@RequestBody UsernameAndAddress usernameAndAddress){
-        userJoinAddressService.deleteUserAddressByUsername(usernameAndAddress);
+    public void deleteUserAddressByUsername(@RequestBody UsernameAndAddressDto usernameAndAddress){
+        userService.deleteUserAddressByUsername(usernameAndAddress);
     }
 
     @DeleteMapping("/{username}")
@@ -36,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/address/{username}")
-    public void addUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDTO addressDTO){
-        userJoinAddressService.addUserAddressByUsername(username, addressDTO);
+    public void addUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto addressDTO){
+        userService.addUserAddressByUsername(username, addressDTO);
     }
 }

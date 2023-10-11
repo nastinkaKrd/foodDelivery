@@ -1,8 +1,10 @@
 package com.project.food_delivery.services;
 
-import com.project.food_delivery.dtos.AddressDTO;
+import com.project.food_delivery.dtos.AddressDto;
+import com.project.food_delivery.models.Address;
 
 public interface AddressService {
-    void addNewAddress(AddressDTO addressDTO);
     void deleteAddressById(Integer id);
+    AddressDto changeAddress(Address address);
+    Address addNewAddressAndReturn(AddressDto addressDTO);
 }

@@ -1,13 +1,17 @@
 package com.project.food_delivery.services;
 
-import com.project.food_delivery.RequestBodies.PlaceData;
-import com.project.food_delivery.dtos.PlaceDTO;
+import com.project.food_delivery.dtos.PlaceDataDto;
+import com.project.food_delivery.dtos.PlaceDto;
+import com.project.food_delivery.models.Place;
 import java.util.List;
 
 public interface PlaceService {
-    List<PlaceDTO> getPlacesByPlaceCategory(String category);
+    List<PlaceDto> getPlacesByPlaceCategory(String category);
 
-    List<PlaceDTO> getPlacesByCity(String city);
+    List<PlaceDto> getPlacesByCity(String city);
 
-    void addPlace(PlaceData placeData);
+    void addPlace(PlaceDataDto placeData);
+
+    Place returnPlaceIfExists(String place);
+
 }

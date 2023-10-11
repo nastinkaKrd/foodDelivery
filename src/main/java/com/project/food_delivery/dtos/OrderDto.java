@@ -2,16 +2,13 @@ package com.project.food_delivery.dtos;
 
 import com.project.food_delivery.models.Payment;
 import com.project.food_delivery.models.Status;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 public class OrderDto {
     private LocalDateTime dateAndTime;
-    private Float price;
+    private Double price;
     private Payment payment;
     private Status status;
 }

@@ -1,8 +1,7 @@
 package com.project.food_delivery.rest_controllers;
 
-import com.project.food_delivery.RequestBodies.ProductData;
-import com.project.food_delivery.dtos.ProductJoinCompanyDTO;
-import com.project.food_delivery.services.ProductJoinCompanyService;
+import com.project.food_delivery.dtos.ProductDataDto;
+import com.project.food_delivery.dtos.ProductMetadataDto;
 import com.project.food_delivery.services.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,16 +13,19 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
-    private final ProductJoinCompanyService productJoinCompanyService;
+
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductJoinCompanyDTO> getProductsByProductCategory(@RequestParam(name = "category") String category){
-        return productJoinCompanyService.findProductInformationByProductCategory(category);
+    public List<ProductMetadataDto> getProductsByProductCategory(@RequestParam(name = "category") String category){
+        return productService.findProductInformationByProductCategory(category);
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addProduct(@RequestBody ProductData productData){
+    public void addProduct(@RequestBody ProductDataDto productData){
         productService.addProduct(productData);
     }
+
+
+
 }

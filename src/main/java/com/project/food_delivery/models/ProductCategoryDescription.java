@@ -1,7 +1,15 @@
 package com.project.food_delivery.models;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.GenerationType;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+import lombok.Setter;
 
 @Entity
 @Table(name = "product_categories_descriptions")
@@ -15,7 +23,7 @@ public class ProductCategoryDescription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    public ProductCategoryDescription(String categoryDescription) {
+     public ProductCategoryDescription(String categoryDescription) {
         this.categoryDescription = categoryDescription;
     }
 

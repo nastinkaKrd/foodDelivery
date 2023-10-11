@@ -1,7 +1,7 @@
 package com.project.food_delivery.rest_controllers;
 
-import com.project.food_delivery.RequestBodies.ProductCategoryAndDescription;
-import com.project.food_delivery.dtos.ProductCategoryDTO;
+import com.project.food_delivery.dtos.ProductCategoryAndDescriptionDto;
+import com.project.food_delivery.dtos.ProductCategoryDto;
 import com.project.food_delivery.services.ProductCategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,13 +15,13 @@ public class ProductCategoryController {
     private final ProductCategoryService productCategoryService;
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductCategoryDTO> getProductCategories(){
+    public List<ProductCategoryDto> getProductCategories(){
         return productCategoryService.getProductCategories();
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addProductCategory(@RequestBody ProductCategoryAndDescription productCategoryAndDescription){
+    public void addProductCategory(@RequestBody ProductCategoryAndDescriptionDto productCategoryAndDescription){
         productCategoryService.addProductCategory(productCategoryAndDescription);
     }
 }

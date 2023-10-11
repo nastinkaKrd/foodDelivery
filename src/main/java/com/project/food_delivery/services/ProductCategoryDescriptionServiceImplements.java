@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 public class ProductCategoryDescriptionServiceImplements implements ProductCategoryDescriptionService{
     private final ProductCategoryDescriptionRepository productCategoryDescriptionRepository;
     @Override
-    public void addDescription(String description) {
-        productCategoryDescriptionRepository.save(new ProductCategoryDescription(description));
+    public ProductCategoryDescription addDescriptionAndReturned(String description) {
+        if (productCategoryDescriptionRepository.findByCategoryDescription(description).isEmpty()){
+            productCategoryDescriptionRepository.save(new ProductCategoryDescription(description));
+        }
+        return productCategoryDescriptionRepository.findByCategoryDescription(description).get();
     }
 }

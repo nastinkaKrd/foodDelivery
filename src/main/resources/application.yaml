@@ -4,6 +4,6 @@ spring:
   jpa:
     hibernate.ddl-auto: validate
   datasource:
-    url: jdbc:postgresql://localhost:5432/foodDeliveryProject
-    username: postgres
-    password: postgrespassnastia
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}

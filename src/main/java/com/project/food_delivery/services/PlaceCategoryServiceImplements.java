@@ -1,6 +1,7 @@
 package com.project.food_delivery.services;
 
-import com.project.food_delivery.dtos.PlaceCategoryDTO;
+import com.project.food_delivery.dtos.PlaceCategoryDto;
+import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
 import com.project.food_delivery.mapper_interfaces.PlaceCategoryMapper;
 import com.project.food_delivery.models.PlaceCategory;
 import com.project.food_delivery.repositories.PlaceCategoryRepository;
@@ -15,17 +16,19 @@ public class PlaceCategoryServiceImplements implements PlaceCategoryService{
     private final PlaceCategoryMapper placeCategoryMapper;
 
     @Override
-    public List<PlaceCategoryDTO> getPlaceCategories() {
+    public List<PlaceCategoryDto> getPlaceCategories() {
         List<PlaceCategory> placeCategories = placeCategoryRepository.findAll();
+        if (placeCategories.isEmpty()){
+            throw new ApiRequestExceptionNotFound("There are no place category");
+        }
         return placeCategories.stream().map(placeCategoryMapper::placeCategoryToPlaceCategoryDTO).toList();
     }
 
     @Override
-    public void addPlaceCategory(String placeCategory) {
+    public PlaceCategory addPlaceCategoryAndReturn(String placeCategory) {
         if (placeCategoryRepository.findPlaceCategoryByPlaceCategory(placeCategory).isEmpty()){
             placeCategoryRepository.save(new PlaceCategory(placeCategory));
-        }else {
-            //will be handler exception
         }
+        return placeCategoryRepository.findPlaceCategoryByPlaceCategory(placeCategory).get();
     }
 }

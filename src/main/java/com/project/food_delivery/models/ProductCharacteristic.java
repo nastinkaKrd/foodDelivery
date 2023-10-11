@@ -16,10 +16,10 @@ public class ProductCharacteristic {
     private Integer id;
 
     @Column(name = "price")
-    private Float price;
+    private Double price;
 
     @Column(name = "weight")
-    private Float weight;
+    private Double weight;
 
     @Column(name = "available_amount")
     private Integer availableAmount;
@@ -27,4 +27,7 @@ public class ProductCharacteristic {
     @Column(name = "weight_measurement")
     @Enumerated(EnumType.STRING)
     private WeightMeasurement weightMeasurement;
+
+    @OneToOne(mappedBy = "productCharacteristic")
+    private ProductMetadata productMetadata;
 }
