@@ -86,7 +86,7 @@ public class UserServiceImplements implements UserService{
     public void addUserAddressByUsername(String username, AddressDto addressDTO) {
         userRepository.findByUsername(username).ifPresentOrElse(
                 user -> {
-                    Address address = addressService.addNewAddressAndReturn(addressDTO);
+                    Address address = addressService.addNewAddress(addressDTO);
                     List<Address> addresses = user.getAddresses();
                     addresses.add(address);
                     user.setAddresses(addresses);

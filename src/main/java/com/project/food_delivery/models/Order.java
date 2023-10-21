@@ -13,7 +13,11 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.CascadeType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.List;
 

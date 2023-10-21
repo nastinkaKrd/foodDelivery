@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface PlaceCategoryService {
     List<PlaceCategoryDto> getPlaceCategories();
-
     PlaceCategory addPlaceCategoryAndReturn(String placeCategory);
 }

@@ -13,12 +13,9 @@ public class CompanyServiceImplements implements CompanyService{
     private final CompanyRepository companyRepository;
     private final CompanyMapper companyMapper;
     @Override
-    public Company addNewCompanyIfNotExistAndReturned(CompanyDtoRequest companyDtoRequest) {
+    public Company addNewCompany(CompanyDtoRequest companyDtoRequest) {
         return companyRepository.findByName(companyDtoRequest.getName()).orElseGet(
-                () -> {
-                    companyRepository.save(companyMapper.companyDtoToModel(companyDtoRequest));
-                    return companyRepository.findByName(companyDtoRequest.getName()).get();
-                }
+                () -> companyRepository.save(companyMapper.companyDtoToModel(companyDtoRequest))
         );
     }
 }

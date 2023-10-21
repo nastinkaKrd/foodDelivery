@@ -19,7 +19,7 @@ public class OrderServiceImplements implements OrderService{
     private final UserServiceImplements userServiceImplements;
     private final OrderMapper orderMapper;
     @Override
-    public List<OrderDto> getListOfOrdersByUsername(String username) {
+    public List<OrderDto> getOrders(String username) {
         User user = userServiceImplements.getUserByUsername(username);
         if (orderRepository.findOrdersByUser(user).isEmpty()){
             throw new ApiRequestExceptionNotFound("You don't have orders");

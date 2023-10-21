@@ -4,5 +4,5 @@ import com.project.food_delivery.dtos.CompanyDtoRequest;
 import com.project.food_delivery.models.Company;
 
 public interface CompanyService {
-    Company addNewCompanyIfNotExistAndReturned(CompanyDtoRequest companyDtoRequest);
+    Company addNewCompany(CompanyDtoRequest companyDtoRequest);
 }

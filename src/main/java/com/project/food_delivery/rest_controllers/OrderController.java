@@ -19,7 +19,7 @@ public class OrderController {
 
     @GetMapping("/{username}")
     public List<OrderDto> getListOfOrdersByUsername(@PathVariable(name = "username") String username){
-        return orderService.getListOfOrdersByUsername(username);
+        return orderService.getOrders(username);
     }
 
     @PostMapping("/{username}")

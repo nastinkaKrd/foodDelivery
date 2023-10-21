@@ -12,7 +12,11 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.CascadeType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.Setter;
 import java.util.List;
 
 @Entity
@@ -53,7 +57,7 @@ public class User {
                     @JoinColumn(name = "user_id", referencedColumnName = "id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "addres_id", referencedColumnName = "id")
+                    @JoinColumn(name = "address_id", referencedColumnName = "id")
             })
     private List<Address> addresses;
 }

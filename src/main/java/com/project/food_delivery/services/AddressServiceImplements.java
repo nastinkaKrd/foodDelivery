@@ -24,20 +24,15 @@ public class AddressServiceImplements implements AddressService{
 
     @Override
     public AddressDto changeAddress(Address address) {
-        addressRepository.save(address);
-        return addressMapper.addressToDto(addressRepository.findById(address.getId()).get());
+        return addressMapper.addressToDto(addressRepository.save(address));
     }
 
     @Override
-    public Address addNewAddressAndReturn(AddressDto addressDTO) {
-        Address addressModel = addressMapper.addressDtoToModel(addressDTO);
-        return addressRepository.findByCityAndStreetAndBuildingNum(addressDTO.getCity(),
-                addressDTO.getStreet(), addressDTO.getBuildingNum()).orElseGet(
-                () ->{
-                    addressRepository.save(addressModel);
-                    return addressRepository.findByCityAndStreetAndBuildingNum(addressDTO.getCity(),
-                            addressDTO.getStreet(), addressDTO.getBuildingNum()).get();
-                }
+    public Address addNewAddress(AddressDto addressDto) {
+        Address addressModel = addressMapper.addressDtoToModel(addressDto);
+        return addressRepository.findByCityAndStreetAndBuildingNum(addressDto.getCity(),
+                addressDto.getStreet(), addressDto.getBuildingNum()).orElseGet(
+                () -> addressRepository.save(addressModel)
         );
     }
 }

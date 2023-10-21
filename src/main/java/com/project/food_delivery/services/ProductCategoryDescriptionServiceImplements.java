@@ -14,8 +14,7 @@ public class ProductCategoryDescriptionServiceImplements implements ProductCateg
         return productCategoryDescriptionRepository.findByCategoryDescription(description).orElseGet(() -> {
             ProductCategoryDescription productCategoryDescription = ProductCategoryDescription.builder()
                     .categoryDescription(description).build();
-            productCategoryDescriptionRepository.save(productCategoryDescription);
-            return productCategoryDescriptionRepository.findByCategoryDescription(description).get();
+            return productCategoryDescriptionRepository.save(productCategoryDescription);
         });
     }
 }

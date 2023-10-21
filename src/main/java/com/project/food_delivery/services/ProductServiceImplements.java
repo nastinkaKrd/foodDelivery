@@ -42,13 +42,13 @@ public class ProductServiceImplements implements ProductService{
         Optional<ProductMetadata> productMetadata = productRepository.findOne(specification);
         CompanyDtoRequest companyDtoRequest = new CompanyDtoRequest();
         companyDtoRequest.setName(productData.getCompany());
-        Company company = companyService.addNewCompanyIfNotExistAndReturned(companyDtoRequest);
+        Company company = companyService.addNewCompany(companyDtoRequest);
         if (productMetadata.isPresent() && productMetadata.get().getCompanies().contains(company)){
             throw new ApiRequestExceptionAlreadyReported("This data already exists");
         }else {
             ProductCategory productCategory = productCategoryService.returnProductCategoryIfExists(productData.getCategory());
             Place place = placeService.returnPlaceIfExists(productData.getPlace());
-            ProductCharacteristic productCharacteristic = productCharacteristicService.addProductCharacteristicAndReturn(productData.getProductCharacteristic());
+            ProductCharacteristic productCharacteristic = productCharacteristicService.addProductCharacteristic(productData.getProductCharacteristic());
             ProductMetadata productMetadataModel = ProductMetadata.builder()
                     .name(productData.getName())
                     .productCategory(productCategory)

@@ -28,13 +28,13 @@ public class PlaceServiceImplements implements PlaceService{
     @Override
     public List<PlaceDto> getPlacesByPlaceCategory(String category) {
         List<Place> places = placeRepository.findAllByPlaceCategoryPlaceCategory(category);
-        List<PlaceDto> placeDTOS;
+        List<PlaceDto> placeDtos;
         if (!places.isEmpty()){
-            placeDTOS = places.stream().map(placeMapper::placeToDto).toList();
+            placeDtos = places.stream().map(placeMapper::placeToDto).toList();
         }else {
             throw new ApiRequestExceptionNotFound("There aren't found places by this category");
         }
-        return placeDTOS;
+        return placeDtos;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PlaceServiceImplements implements PlaceService{
         if (placeFromDatabase.isEmpty() || !Objects.equals(placeFromDatabase.get().getPlaceCategory().getPlaceCategory(), placeData.getPlaceCategory())){
             AddressDto address = placeData.getAddress();
             PlaceCategory placeCategoryModel = placeCategoryService.addPlaceCategoryAndReturn(placeData.getPlaceCategory());
-            Address addressModel = addressService.addNewAddressAndReturn(address);
+            Address addressModel = addressService.addNewAddress(address);
             Place place = Place.builder()
                     .name(placeData.getName())
                     .placeCategory(placeCategoryModel)
