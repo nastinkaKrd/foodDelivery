@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface PlaceCategoryMapper {
-    PlaceCategoryDto placeCategoryToPlaceCategoryDTO(PlaceCategory placeCategory);
+    PlaceCategoryDto placeCategoryToPlaceCategoryDto(PlaceCategory placeCategory);
 }

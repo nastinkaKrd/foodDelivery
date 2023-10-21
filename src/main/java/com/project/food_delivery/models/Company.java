@@ -8,15 +8,13 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToMany;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 import java.util.List;
 
 @Entity
 @Table(name = "companies")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter

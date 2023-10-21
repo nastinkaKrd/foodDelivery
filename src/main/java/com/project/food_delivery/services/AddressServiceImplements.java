@@ -16,27 +16,28 @@ public class AddressServiceImplements implements AddressService{
 
     @Override
     public void deleteAddressById(Integer id) {
-        if (addressRepository.findById(id).isPresent()){
-            addressRepository.deleteById(id);
-        }else {
+        addressRepository.findById(id).ifPresentOrElse(address -> addressRepository.deleteById(id),
+                () -> {
             throw new  ApiRequestExceptionNotFound("This address not found");
-        }
+        });
     }
 
     @Override
     public AddressDto changeAddress(Address address) {
         addressRepository.save(address);
-        return addressMapper.addressToDTO(addressRepository.findById(address.getId()).get());
+        return addressMapper.addressToDto(addressRepository.findById(address.getId()).get());
     }
 
     @Override
     public Address addNewAddressAndReturn(AddressDto addressDTO) {
-        Address address = addressMapper.addressDTOToModel(addressDTO);
-        if (addressRepository.findByCityAndStreetAndBuildingNum(addressDTO.getCity(),
-                addressDTO.getStreet(), addressDTO.getBuildingNum()).isEmpty()){
-            addressRepository.save(address);
-        }
+        Address addressModel = addressMapper.addressDtoToModel(addressDTO);
         return addressRepository.findByCityAndStreetAndBuildingNum(addressDTO.getCity(),
-                addressDTO.getStreet(), addressDTO.getBuildingNum()).get();
+                addressDTO.getStreet(), addressDTO.getBuildingNum()).orElseGet(
+                () ->{
+                    addressRepository.save(addressModel);
+                    return addressRepository.findByCityAndStreetAndBuildingNum(addressDTO.getCity(),
+                            addressDTO.getStreet(), addressDTO.getBuildingNum()).get();
+                }
+        );
     }
 }

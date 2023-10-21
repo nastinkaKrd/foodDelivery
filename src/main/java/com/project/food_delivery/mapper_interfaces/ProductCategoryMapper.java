@@ -6,6 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ProductCategoryMapper {
-    ProductCategoryDto productCategoryToDTO(ProductCategory productCategory);
-    ProductCategory productCategoryDTOToModel(ProductCategoryDto productCategoryDTO);
+    ProductCategoryDto productCategoryToDto(ProductCategory productCategory);
 }

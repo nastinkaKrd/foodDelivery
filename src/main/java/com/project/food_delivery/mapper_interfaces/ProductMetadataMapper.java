@@ -4,7 +4,7 @@ import com.project.food_delivery.dtos.ProductMetadataDto;
 import com.project.food_delivery.models.ProductMetadata;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = {ProductCharacteristicMapper.class, ProductCategoryMapper.class})
+@Mapper(componentModel = "spring")
 public interface ProductMetadataMapper {
-    ProductMetadataDto productMetadataToDTO(ProductMetadata productMetadata);
+    ProductMetadataDto productMetadataToDto(ProductMetadata productMetadata);
 }

@@ -10,15 +10,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 import java.util.List;
 
 @Entity
 @Table(name = "product_categories")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter
@@ -30,11 +28,6 @@ public class ProductCategory {
 
     @Column(name = "product_category")
     private String productCategory;
-
-    public ProductCategory(String productCategory, ProductCategoryDescription productCategoryDescription) {
-        this.productCategory = productCategory;
-        this.productCategoryDescription = productCategoryDescription;
-    }
 
     @OneToOne
     @JoinColumn(name = "category_description_id", referencedColumnName = "id")

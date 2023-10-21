@@ -6,22 +6,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "place_categories")
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
-@Setter
+@Builder
 public class PlaceCategory {
-    public PlaceCategory(String placeCategory) {
-        this.placeCategory = placeCategory;
-    }
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

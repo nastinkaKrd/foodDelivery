@@ -8,14 +8,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "tokens")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter

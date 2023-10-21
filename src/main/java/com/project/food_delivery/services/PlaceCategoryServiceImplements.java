@@ -21,13 +21,15 @@ public class PlaceCategoryServiceImplements implements PlaceCategoryService{
         if (placeCategories.isEmpty()){
             throw new ApiRequestExceptionNotFound("There are no place category");
         }
-        return placeCategories.stream().map(placeCategoryMapper::placeCategoryToPlaceCategoryDTO).toList();
+        return placeCategories.stream().map(placeCategoryMapper::placeCategoryToPlaceCategoryDto).toList();
     }
 
     @Override
     public PlaceCategory addPlaceCategoryAndReturn(String placeCategory) {
         if (placeCategoryRepository.findPlaceCategoryByPlaceCategory(placeCategory).isEmpty()){
-            placeCategoryRepository.save(new PlaceCategory(placeCategory));
+            PlaceCategory placeCategoryModel = PlaceCategory.builder()
+                                                            .placeCategory(placeCategory).build();
+            placeCategoryRepository.save(placeCategoryModel);
         }
         return placeCategoryRepository.findPlaceCategoryByPlaceCategory(placeCategory).get();
     }

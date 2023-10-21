@@ -11,29 +11,21 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.CascadeType;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 import java.util.List;
 
 @Entity
 @Table(name = "places")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
-@Setter
+@Builder
 public class Place {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    public Place(String name, PlaceCategory placeCategory, List<Address> addresses) {
-        this.name = name;
-        this.placeCategory = placeCategory;
-        this.addresses = addresses;
-    }
 
     @Column(name = "name")
     private String name;
@@ -51,7 +43,7 @@ public class Place {
                     @JoinColumn(name = "place_id", referencedColumnName = "id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "addres_id", referencedColumnName = "id")
+                    @JoinColumn(name = "address_id", referencedColumnName = "id")
             })
     private List<Address> addresses;
 

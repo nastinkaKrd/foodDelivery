@@ -27,10 +27,6 @@ public class OrderServiceImplements implements OrderService{
         return orderRepository.findOrdersByUser(user).stream().map(orderMapper::orderToDto).toList();
     }
 
-   /* @Override
-    public void buildNewOrderFromBasket(Basket basket) {
-
-    }*/
 
     @Override
     public String changeOrderStatus(String status, String orderId) {

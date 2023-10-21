@@ -1,20 +1,29 @@
 package com.project.food_delivery.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 import java.util.List;
 
 
 @Entity
 @Table(name = "product_metadata")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
-@Setter
+@Builder
 public class ProductMetadata {
     @Id
     @Column(name = "id")
@@ -58,14 +67,6 @@ public class ProductMetadata {
         }
     )
     private ProductCharacteristic productCharacteristic;
-
-    public ProductMetadata(String name, ProductCategory productCategory, ProductCharacteristic productCharacteristic, Place place, List<Company> companies) {
-        this.name = name;
-        this.productCategory = productCategory;
-        this.productCharacteristic = productCharacteristic;
-        this.place = place;
-        this.companies = companies;
-    }
 
     @JsonBackReference
     @ManyToMany(mappedBy = "productMetadata")

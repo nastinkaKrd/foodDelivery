@@ -5,7 +5,8 @@ import lombok.*;
 
 @Entity
 @Table(name = "product_characteristics")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter

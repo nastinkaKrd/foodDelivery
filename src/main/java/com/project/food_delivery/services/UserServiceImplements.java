@@ -24,11 +24,10 @@ public class UserServiceImplements implements UserService{
     private final AddressService addressService;
     @Override
     public UserInformationDto findUserInformationByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        if (user.isEmpty()){
-            throw new ApiRequestExceptionNotFound("Information is not found");
-        }
-        return userMapper.userToDto(user.get());
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new ApiRequestExceptionNotFound("Information is not found")
+        );
+        return userMapper.userToDto(user);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class UserServiceImplements implements UserService{
                 index++;
             }
             if (isFound){
-                Address addressModel = addressMapper.addressDTOToModel(address);
+                Address addressModel = addressMapper.addressDtoToModel(address);
                 addressModel.setId(address_id);
                 addresses.add(index, addressModel);
                 AddressDto addressDto = addressService.changeAddress(addressModel);
@@ -64,11 +63,9 @@ public class UserServiceImplements implements UserService{
 
     @Override
     public User getUserByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        if (user.isEmpty()){
-            throw new ApiRequestExceptionNotFound("User is not found");
-        }
-        return user.get();
+        return userRepository.findByUsername(username).orElseThrow(
+                () -> new ApiRequestExceptionNotFound("User is not found")
+        );
     }
 
     @Override
@@ -87,36 +84,38 @@ public class UserServiceImplements implements UserService{
 
     @Override
     public void addUserAddressByUsername(String username, AddressDto addressDTO) {
-        Optional<User> user = userRepository.findByUsername(username);
-        if (user.isPresent()){
-            Address address = addressService.addNewAddressAndReturn(addressDTO);
-            User userModel = user.get();
-            List<Address> addresses = userModel.getAddresses();
-            addresses.add(address);
-            userModel.setAddresses(addresses);
-            userRepository.save(userModel);
-        }else {
-            throw new ApiRequestExceptionNotFound("User is not found");
-        }
+        userRepository.findByUsername(username).ifPresentOrElse(
+                user -> {
+                    Address address = addressService.addNewAddressAndReturn(addressDTO);
+                    List<Address> addresses = user.getAddresses();
+                    addresses.add(address);
+                    user.setAddresses(addresses);
+                    userRepository.save(user);
+                },
+                () -> {
+                    throw new ApiRequestExceptionNotFound("User is not found");
+                }
+        );
     }
 
     @Override
     public void deleteUserAddressByUsername(UsernameAndAddressDto usernameAndAddress) {
-        Optional<User> user = userRepository.findByUsername(usernameAndAddress.getUsername());
-        if (user.isPresent()){
-            User userModel = user.get();
-            List<Address> address = user.get().getAddresses();
-            for (Address addressTemp: address){
-                if (addressTemp.getId().equals(usernameAndAddress.getAddressId())){
-                    address.remove(addressTemp);
-                    break;
+        userRepository.findByUsername(usernameAndAddress.getUsername()).ifPresentOrElse(
+                user -> {
+                    List<Address> address = user.getAddresses();
+                    for (Address addressTemp: address){
+                        if (addressTemp.getId().equals(usernameAndAddress.getAddressId())){
+                            address.remove(addressTemp);
+                            break;
+                        }
+                    }
+                    user.setAddresses(address);
+                    userRepository.save(user);
+                    addressService.deleteAddressById(usernameAndAddress.getAddressId());
+                },
+                () -> {
+                    throw new ApiRequestExceptionNotFound("User or address is not found");
                 }
-            }
-            userModel.setAddresses(address);
-            userRepository.save(userModel);
-            addressService.deleteAddressById(usernameAndAddress.getAddressId());
-        }else {
-            throw new ApiRequestExceptionNotFound("User or address is not found");
-        }
+        );
     }
 }

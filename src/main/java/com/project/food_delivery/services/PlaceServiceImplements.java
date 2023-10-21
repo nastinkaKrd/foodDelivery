@@ -30,7 +30,7 @@ public class PlaceServiceImplements implements PlaceService{
         List<Place> places = placeRepository.findAllByPlaceCategoryPlaceCategory(category);
         List<PlaceDto> placeDTOS;
         if (!places.isEmpty()){
-            placeDTOS = places.stream().map(placeMapper::placeToDTO).toList();
+            placeDTOS = places.stream().map(placeMapper::placeToDto).toList();
         }else {
             throw new ApiRequestExceptionNotFound("There aren't found places by this category");
         }
@@ -44,7 +44,10 @@ public class PlaceServiceImplements implements PlaceService{
             AddressDto address = placeData.getAddress();
             PlaceCategory placeCategoryModel = placeCategoryService.addPlaceCategoryAndReturn(placeData.getPlaceCategory());
             Address addressModel = addressService.addNewAddressAndReturn(address);
-            Place place = new Place(placeData.getName(), placeCategoryModel, new ArrayList<>(List.of(addressModel)));
+            Place place = Place.builder()
+                    .name(placeData.getName())
+                    .placeCategory(placeCategoryModel)
+                    .addresses(new ArrayList<>(List.of(addressModel))).build();
             placeRepository.save(place);
         }else {
             throw new ApiRequestExceptionAlreadyReported("This place was added before");
@@ -53,27 +56,25 @@ public class PlaceServiceImplements implements PlaceService{
 
     @Override
     public Place returnPlaceIfExists(String place) {
-        Optional<Place> placeOptional = placeRepository.findByName(place);
-        if (placeOptional.isEmpty()){
-            throw new ApiRequestExceptionNotFound("Place is not found, create it");
-        }
-        return placeOptional.get();
+        return placeRepository.findByName(place).orElseThrow(
+                () -> new ApiRequestExceptionNotFound("Place is not found, create it")
+        );
     }
 
     @Override
     public List<PlaceDto> getPlacesByCity(String city) {
         List<Place> places = placeRepository.findAll();
         if (!places.isEmpty()){
-            List<PlaceDto> placeDtos = new ArrayList<>();
+            List<PlaceDto> placeDtoList = new ArrayList<>();
             places.forEach(place -> place.getAddresses().forEach(address -> {
                 if (address.getCity().equals(city)){
-                    placeDtos.add(placeMapper.placeToDTO(place));
+                    placeDtoList.add(placeMapper.placeToDto(place));
                 }
             }));
-            if (placeDtos.isEmpty()){
+            if (placeDtoList.isEmpty()){
                 throw new ApiRequestExceptionNotFound("In this city we don't do food delivery");
             }
-            return placeDtos;
+            return placeDtoList;
         }else {
             throw new ApiRequestExceptionNotFound("Places is not found");
         }

@@ -6,6 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ProductCharacteristicMapper {
-    ProductCharacteristicDto productCharacteristicToDTO(ProductCharacteristic productCharacteristic);
-    ProductCharacteristic productCharacteristicDTOToModel(ProductCharacteristicDto productCharacteristicDTO);
+    ProductCharacteristic productCharacteristicDtoToModel(ProductCharacteristicDto productCharacteristicDto);
 }

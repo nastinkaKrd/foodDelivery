@@ -9,17 +9,13 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 import java.util.List;
 
 @Entity
 @Table(name = "addresses")
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter

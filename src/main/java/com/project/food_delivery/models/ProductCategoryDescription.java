@@ -6,26 +6,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "product_categories_descriptions")
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
+@Builder
 @Getter
-@Setter
 public class ProductCategoryDescription {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-     public ProductCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
-    }
 
     @Column(name = "category_description")
     private String categoryDescription;

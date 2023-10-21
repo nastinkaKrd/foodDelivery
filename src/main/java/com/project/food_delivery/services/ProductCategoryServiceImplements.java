@@ -11,7 +11,6 @@ import com.project.food_delivery.repositories.ProductCategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,25 +24,30 @@ public class ProductCategoryServiceImplements implements ProductCategoryService{
         if (productCategories.isEmpty()){
             throw new ApiRequestExceptionNotFound("There are no product categories");
         }
-        return productCategories.stream().map(productCategoryMapper::productCategoryToDTO).toList();
+        return productCategories.stream().map(productCategoryMapper::productCategoryToDto).toList();
     }
 
     @Override
     public void addProductCategory(ProductCategoryAndDescriptionDto productCategoryAndDescription) {
-        if (productCategoryRepository.findByProductCategory(productCategoryAndDescription.getCategory()).isPresent()){
-            throw new ApiRequestExceptionAlreadyReported("This category was added before to database");
-        }else {
-            ProductCategoryDescription productCategoryDescription = productCategoryDescriptionService.addDescriptionAndReturned(productCategoryAndDescription.getDescription());
-            productCategoryRepository.save(new ProductCategory(productCategoryAndDescription.getCategory(), productCategoryDescription));
-        }
+        productCategoryRepository.findByProductCategory(productCategoryAndDescription.getCategory()).ifPresentOrElse(
+                productCategory -> {
+                    throw new ApiRequestExceptionAlreadyReported("This category was added before to database");
+                },
+                () -> {
+                    ProductCategoryDescription productCategoryDescription = productCategoryDescriptionService
+                            .addDescription(productCategoryAndDescription.getDescription());
+                    ProductCategory productCategory = new ProductCategory();
+                    productCategory.setProductCategory(productCategoryAndDescription.getCategory());
+                    productCategory.setProductCategoryDescription(productCategoryDescription);
+                    productCategoryRepository.save(productCategory);
+                }
+        );
     }
 
     @Override
     public ProductCategory returnProductCategoryIfExists(String productCategory) {
-        Optional<ProductCategory> productCategoryModel = productCategoryRepository.findByProductCategory(productCategory);
-        if (productCategoryModel.isEmpty()){
-            throw new ApiRequestExceptionNotFound("Product category is not found. Please create it");
-        }
-        return productCategoryModel.get();
+        return productCategoryRepository.findByProductCategory(productCategory).orElseThrow(
+                () -> new ApiRequestExceptionNotFound("Product category is not found. Please create it")
+        );
     }
 }
