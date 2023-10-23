@@ -1,12 +1,11 @@
 package com.project.food_delivery.services;
 
-import com.project.food_delivery.dtos.PlaceDataDto;
 import com.project.food_delivery.dtos.AddressDto;
+import com.project.food_delivery.dtos.PlaceDataDto;
 import com.project.food_delivery.dtos.PlaceDto;
 import com.project.food_delivery.exceptions.ApiRequestExceptionAlreadyReported;
 import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
 import com.project.food_delivery.mapper_interfaces.PlaceMapper;
-import com.project.food_delivery.models.Address;
 import com.project.food_delivery.models.Place;
 import com.project.food_delivery.models.PlaceCategory;
 import com.project.food_delivery.repositories.PlaceRepository;
@@ -41,9 +40,9 @@ public class PlaceServiceImplements implements PlaceService{
     public void addPlace(PlaceDataDto placeData) {
         Optional<Place> placeFromDatabase = placeRepository.findByName(placeData.getName());
         if (placeFromDatabase.isEmpty() || !Objects.equals(placeFromDatabase.get().getPlaceCategory().getPlaceCategory(), placeData.getPlaceCategory())){
-            AddressDto address = placeData.getAddress();
+            AddressDto addressDto = placeData.getAddressDto();
             PlaceCategory placeCategoryModel = placeCategoryService.addPlaceCategoryAndReturn(placeData.getPlaceCategory());
-            Address addressModel = addressService.addNewAddress(address);
+            com.project.food_delivery.models.Address addressModel = addressService.addNewAddress(addressDto);
             Place place = Place.builder()
                     .name(placeData.getName())
                     .placeCategory(placeCategoryModel)

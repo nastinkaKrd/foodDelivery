@@ -7,10 +7,9 @@ import com.project.food_delivery.models.User;
 
 public interface UserService {
     UserInformationDto findUserInformationByUsername(String username);
-    AddressDto changeUserAddressByUsername(String username, AddressDto address, Integer address_id);
+    AddressDto changeUserAddressByUsername(String username, AddressDto addressDto);
     User getUserByUsername(String username);
     void deleteUserAccount(String username);
-    boolean isUserExists(String username);
-    void addUserAddressByUsername(String username, AddressDto addressDTO);
+    void addUserAddressByUsername(String username, AddressDto addressDto);
     void deleteUserAddressByUsername(UsernameAndAddressDto usernameAndAddress);
 }

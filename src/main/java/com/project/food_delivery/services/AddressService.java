@@ -5,6 +5,6 @@ import com.project.food_delivery.models.Address;
 
 public interface AddressService {
     void deleteAddressById(Integer id);
-    AddressDto changeAddress(Address address);
-    Address addNewAddress(AddressDto addressDto);
+    Address changeAddress(AddressDto addressDto);
+    com.project.food_delivery.models.Address addNewAddress(AddressDto addressDto);
 }

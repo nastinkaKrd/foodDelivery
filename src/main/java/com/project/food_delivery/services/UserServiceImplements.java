@@ -12,8 +12,7 @@ import com.project.food_delivery.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @AllArgsConstructor
@@ -31,35 +30,26 @@ public class UserServiceImplements implements UserService{
     }
 
     @Override
-    public AddressDto changeUserAddressByUsername(String username, AddressDto address, Integer address_id) {
-        Optional<User> user = userRepository.findByUsername(username);
-        if (user.isPresent()){
-            List<Address> addresses = user.get().getAddresses();
-            boolean isFound = false;
-            int index = 0;
-            for (Address address1: addresses){
-                if (Objects.equals(address1.getId(), address_id)){
-                    isFound = true;
-                    break;
-                }
-                index++;
-            }
-            if (isFound){
-                Address addressModel = addressMapper.addressDtoToModel(address);
-                addressModel.setId(address_id);
-                addresses.add(index, addressModel);
-                AddressDto addressDto = addressService.changeAddress(addressModel);
-                User userModel = user.get();
-                userModel.setAddresses(addresses);
-                userRepository.save(userModel);
-                return addressDto;
-            }else {
-                throw new ApiRequestExceptionNotFound("Address is not found");
-            }
-        }else {
-            throw new ApiRequestExceptionNotFound("User is not found");
+    public AddressDto changeUserAddressByUsername(String username, AddressDto address) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ApiRequestExceptionNotFound("User is not found"));
+        List<com.project.food_delivery.models.Address> addresses = user.getAddresses();
+        AtomicInteger index= new AtomicInteger(-1);
+        boolean isFound = addresses.stream().anyMatch(addressModel -> {
+            index.getAndIncrement();
+            return addressModel.getId().equals(address.getId());
+        });
+        if (isFound){
+            Address addressModel = addressService.changeAddress(address);
+            addresses.add(index.get(), addressModel);
+            user.setAddresses(addresses);
+            userRepository.save(user);
+            return addressMapper.addressToDto(addressModel);
+        } else {
+            throw new ApiRequestExceptionNotFound("Address is not found");
         }
     }
+
 
     @Override
     public User getUserByUsername(String username) {
@@ -70,24 +60,21 @@ public class UserServiceImplements implements UserService{
 
     @Override
     public void deleteUserAccount(String username) {
-        if (isUserExists(username)){
-            userRepository.deleteByUsername(username);
-        }else {
-            throw new ApiRequestExceptionNotFound("User is not found");
-        }
+        userRepository.findByUsername(username).ifPresentOrElse(
+                user -> userRepository.deleteByUsername(user.getUsername()),
+                () -> {
+                    throw new ApiRequestExceptionNotFound("User is not found");
+                }
+        );
     }
 
-    @Override
-    public boolean isUserExists(String username) {
-        return userRepository.findByUsername(username).isPresent();
-    }
 
     @Override
     public void addUserAddressByUsername(String username, AddressDto addressDTO) {
         userRepository.findByUsername(username).ifPresentOrElse(
                 user -> {
-                    Address address = addressService.addNewAddress(addressDTO);
-                    List<Address> addresses = user.getAddresses();
+                    com.project.food_delivery.models.Address address = addressService.addNewAddress(addressDTO);
+                    List<com.project.food_delivery.models.Address> addresses = user.getAddresses();
                     addresses.add(address);
                     user.setAddresses(addresses);
                     userRepository.save(user);
@@ -102,8 +89,8 @@ public class UserServiceImplements implements UserService{
     public void deleteUserAddressByUsername(UsernameAndAddressDto usernameAndAddress) {
         userRepository.findByUsername(usernameAndAddress.getUsername()).ifPresentOrElse(
                 user -> {
-                    List<Address> address = user.getAddresses();
-                    for (Address addressTemp: address){
+                    List<com.project.food_delivery.models.Address> address = user.getAddresses();
+                    for (com.project.food_delivery.models.Address addressTemp: address){
                         if (addressTemp.getId().equals(usernameAndAddress.getAddressId())){
                             address.remove(addressTemp);
                             break;

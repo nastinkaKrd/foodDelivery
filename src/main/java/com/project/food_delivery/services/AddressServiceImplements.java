@@ -23,13 +23,13 @@ public class AddressServiceImplements implements AddressService{
     }
 
     @Override
-    public AddressDto changeAddress(Address address) {
-        return addressMapper.addressToDto(addressRepository.save(address));
+    public Address changeAddress(AddressDto addressDto) {
+        return addressRepository.save(addressMapper.addressDtoToModel(addressDto));
     }
 
     @Override
-    public Address addNewAddress(AddressDto addressDto) {
-        Address addressModel = addressMapper.addressDtoToModel(addressDto);
+    public com.project.food_delivery.models.Address addNewAddress(AddressDto addressDto) {
+        com.project.food_delivery.models.Address addressModel = addressMapper.addressDtoToModel(addressDto);
         return addressRepository.findByCityAndStreetAndBuildingNum(addressDto.getCity(),
                 addressDto.getStreet(), addressDto.getBuildingNum()).orElseGet(
                 () -> addressRepository.save(addressModel)

@@ -1,7 +1,7 @@
 package com.project.food_delivery.rest_controllers;
 
-import com.project.food_delivery.dtos.UsernameAndAddressDto;
 import com.project.food_delivery.dtos.AddressDto;
+import com.project.food_delivery.dtos.UsernameAndAddressDto;
 import com.project.food_delivery.dtos.UserInformationDto;
 import com.project.food_delivery.services.UserService;
 import lombok.AllArgsConstructor;
@@ -18,9 +18,8 @@ public class UserController {
     }
 
     @PutMapping("/{username}")
-    public AddressDto changeUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto address
-            , @RequestParam(name = "address_id") Integer address_id){
-        return userService.changeUserAddressByUsername(username, address, address_id);
+    public AddressDto changeUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto addressDto){
+        return userService.changeUserAddressByUsername(username, addressDto);
     }
 
     @DeleteMapping("/address")
@@ -34,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/address/{username}")
-    public void addUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto addressDTO){
-        userService.addUserAddressByUsername(username, addressDTO);
+    public void addUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto addressDto){
+        userService.addUserAddressByUsername(username, addressDto);
     }
 }

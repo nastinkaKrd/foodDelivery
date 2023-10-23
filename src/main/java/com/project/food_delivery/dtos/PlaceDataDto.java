@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class PlaceDataDto {
     String name;
-    AddressDto address;
+    AddressDto addressDto;
     String placeCategory;
 }
