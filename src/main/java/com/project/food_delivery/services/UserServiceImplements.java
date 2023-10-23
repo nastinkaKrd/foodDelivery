@@ -12,7 +12,7 @@ import com.project.food_delivery.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -34,20 +34,14 @@ public class UserServiceImplements implements UserService{
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ApiRequestExceptionNotFound("User is not found"));
         List<Address> addresses = user.getAddresses();
-        AtomicInteger index= new AtomicInteger(-1);
-        boolean isFound = addresses.stream().anyMatch(addressModel -> {
-            index.getAndIncrement();
-            return addressModel.getId().equals(address.getId());
-        });
-        if (isFound){
-            Address addressModel = addressService.changeAddress(address);
-            addresses.add(index.get(), addressModel);
-            user.setAddresses(addresses);
-            userRepository.save(user);
-            return addressMapper.addressToDto(addressModel);
-        } else {
-            throw new ApiRequestExceptionNotFound("Address is not found");
-        }
+        Optional<Address> addressOptional = addresses.stream().filter(addressTemp -> addressTemp.getId().equals(address.getId())).findFirst();
+        Address addressModel = addressOptional.orElseThrow(
+                () -> new ApiRequestExceptionNotFound("Address is not found")
+        );
+        addresses.remove(addressModel);
+        Address addressReturned = addressService.changeAddress(address);
+        addresses.add(addressReturned);
+        return addressMapper.addressToDto(addressReturned);
     }
 
 
