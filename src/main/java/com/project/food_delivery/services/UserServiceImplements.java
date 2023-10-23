@@ -83,14 +83,13 @@ public class UserServiceImplements implements UserService{
     public void deleteUserAddressByUsername(UsernameAndAddressDto usernameAndAddress) {
         userRepository.findByUsername(usernameAndAddress.getUsername()).ifPresentOrElse(
                 user -> {
-                    List<Address> address = user.getAddresses();
-                    for (Address addressTemp: address){
-                        if (addressTemp.getId().equals(usernameAndAddress.getAddressId())){
-                            address.remove(addressTemp);
-                            break;
-                        }
-                    }
-                    user.setAddresses(address);
+                    List<Address> addresses = user.getAddresses();
+                    Optional<Address> address = addresses.stream().filter(addressTemp -> addressTemp.getId().equals(usernameAndAddress.getAddressId())).findFirst();
+                    Address addressModel = address.orElseThrow(
+                            () -> new ApiRequestExceptionNotFound("Address is not found")
+                    );
+                    addresses.remove(addressModel);
+                    user.setAddresses(addresses);
                     userRepository.save(user);
                     addressService.deleteAddressById(usernameAndAddress.getAddressId());
                 },
