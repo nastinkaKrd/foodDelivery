@@ -7,5 +7,5 @@ import java.util.List;
 public class PlaceDto {
     private String name;
     private PlaceCategoryDto placeCategory;
-    private List<AddressDto> addressDtos;
+    private List<AddressDto> addresses;
 }

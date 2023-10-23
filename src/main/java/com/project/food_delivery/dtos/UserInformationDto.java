@@ -8,5 +8,5 @@ public class UserInformationDto {
     private String username;
     private String email;
     private String phoneNumber;
-    private List<AddressDto> addressDtos;
+    private List<AddressDto> addresses;
 }

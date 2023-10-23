@@ -33,7 +33,7 @@ public class UserServiceImplements implements UserService{
     public AddressDto changeUserAddressByUsername(String username, AddressDto address) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ApiRequestExceptionNotFound("User is not found"));
-        List<com.project.food_delivery.models.Address> addresses = user.getAddresses();
+        List<Address> addresses = user.getAddresses();
         AtomicInteger index= new AtomicInteger(-1);
         boolean isFound = addresses.stream().anyMatch(addressModel -> {
             index.getAndIncrement();
@@ -73,8 +73,8 @@ public class UserServiceImplements implements UserService{
     public void addUserAddressByUsername(String username, AddressDto addressDTO) {
         userRepository.findByUsername(username).ifPresentOrElse(
                 user -> {
-                    com.project.food_delivery.models.Address address = addressService.addNewAddress(addressDTO);
-                    List<com.project.food_delivery.models.Address> addresses = user.getAddresses();
+                    Address address = addressService.addNewAddress(addressDTO);
+                    List<Address> addresses = user.getAddresses();
                     addresses.add(address);
                     user.setAddresses(addresses);
                     userRepository.save(user);
@@ -89,8 +89,8 @@ public class UserServiceImplements implements UserService{
     public void deleteUserAddressByUsername(UsernameAndAddressDto usernameAndAddress) {
         userRepository.findByUsername(usernameAndAddress.getUsername()).ifPresentOrElse(
                 user -> {
-                    List<com.project.food_delivery.models.Address> address = user.getAddresses();
-                    for (com.project.food_delivery.models.Address addressTemp: address){
+                    List<Address> address = user.getAddresses();
+                    for (Address addressTemp: address){
                         if (addressTemp.getId().equals(usernameAndAddress.getAddressId())){
                             address.remove(addressTemp);
                             break;

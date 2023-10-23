@@ -28,8 +28,8 @@ public class AddressServiceImplements implements AddressService{
     }
 
     @Override
-    public com.project.food_delivery.models.Address addNewAddress(AddressDto addressDto) {
-        com.project.food_delivery.models.Address addressModel = addressMapper.addressDtoToModel(addressDto);
+    public Address addNewAddress(AddressDto addressDto) {
+        Address addressModel = addressMapper.addressDtoToModel(addressDto);
         return addressRepository.findByCityAndStreetAndBuildingNum(addressDto.getCity(),
                 addressDto.getStreet(), addressDto.getBuildingNum()).orElseGet(
                 () -> addressRepository.save(addressModel)
