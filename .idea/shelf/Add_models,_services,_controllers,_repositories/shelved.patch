@@ -1,0 +1,1395 @@
+Index: src/main/java/com/project/food_delivery/RequestBodies/PlaceData.java
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/RequestBodies/PlaceData.java b/src/main/java/com/project/food_delivery/RequestBodies/PlaceData.java
+deleted file mode 100644
+--- a/src/main/java/com/project/food_delivery/RequestBodies/PlaceData.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ /dev/null	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
+@@ -1,13 +0,0 @@
+-package com.project.food_delivery.RequestBodies;
+-
+-import com.project.food_delivery.dtos.AddressDTO;
+-import lombok.Getter;
+-import lombok.Setter;
+-
+-@Setter
+-@Getter
+-public class PlaceData {
+-    String name;
+-    AddressDTO address;
+-    String placeCategory;
+-}
+Index: src/main/java/com/project/food_delivery/RequestBodies/ProductData.java
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/RequestBodies/ProductData.java b/src/main/java/com/project/food_delivery/RequestBodies/ProductData.java
+deleted file mode 100644
+--- a/src/main/java/com/project/food_delivery/RequestBodies/ProductData.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ /dev/null	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
+@@ -1,13 +0,0 @@
+-package com.project.food_delivery.RequestBodies;
+-
+-import com.project.food_delivery.dtos.ProductMetadataDTO;
+-import lombok.Getter;
+-import lombok.Setter;
+-
+-@Setter
+-@Getter
+-public class ProductData {
+-    private ProductMetadataDTO productMetadataDTO;
+-    private String place;
+-    private String company;
+-}
+Index: src/main/java/com/project/food_delivery/RequestBodies/UsernameAndAddress.java
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/RequestBodies/UsernameAndAddress.java b/src/main/java/com/project/food_delivery/RequestBodies/UsernameAndAddress.java
+deleted file mode 100644
+--- a/src/main/java/com/project/food_delivery/RequestBodies/UsernameAndAddress.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ /dev/null	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
+@@ -1,12 +0,0 @@
+-package com.project.food_delivery.RequestBodies;
+-
+-
+-import lombok.Getter;
+-import lombok.Setter;
+-
+-@Getter
+-@Setter
+-public class UsernameAndAddress {
+-    String username;
+-    Integer address_id;
+-}
+Index: src/main/java/com/project/food_delivery/services/CompanyServiceImplements.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.CompanyDTO;\r\nimport com.project.food_delivery.mapper_interfaces.CompanyMapper;\r\nimport com.project.food_delivery.repositories.CompanyRepository;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.stereotype.Service;\r\n\r\n@Service\r\n@AllArgsConstructor\r\npublic class CompanyServiceImplements implements CompanyService{\r\n    private final CompanyRepository companyRepository;\r\n    private final CompanyMapper companyMapper;\r\n    @Override\r\n    public void addNewCompanyIfNotExist(CompanyDTO companyDTO) {\r\n        if (companyRepository.findByName(companyDTO.getName()).isEmpty()){\r\n            companyRepository.save(companyMapper.companyDTOToModel(companyDTO));\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/CompanyServiceImplements.java b/src/main/java/com/project/food_delivery/services/CompanyServiceImplements.java
+--- a/src/main/java/com/project/food_delivery/services/CompanyServiceImplements.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/CompanyServiceImplements.java	(date 1696338761549)
+@@ -1,6 +1,6 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.dtos.CompanyDTO;
++import com.project.food_delivery.dtos.CompanyDto;
+ import com.project.food_delivery.mapper_interfaces.CompanyMapper;
+ import com.project.food_delivery.repositories.CompanyRepository;
+ import lombok.AllArgsConstructor;
+@@ -12,7 +12,7 @@
+     private final CompanyRepository companyRepository;
+     private final CompanyMapper companyMapper;
+     @Override
+-    public void addNewCompanyIfNotExist(CompanyDTO companyDTO) {
++    public void addNewCompanyIfNotExist(CompanyDto companyDTO) {
+         if (companyRepository.findByName(companyDTO.getName()).isEmpty()){
+             companyRepository.save(companyMapper.companyDTOToModel(companyDTO));
+         }
+Index: src/main/java/com/project/food_delivery/services/CompanyService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.CompanyDTO;\r\n\r\npublic interface CompanyService {\r\n    void addNewCompanyIfNotExist(CompanyDTO companyDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/CompanyService.java b/src/main/java/com/project/food_delivery/services/CompanyService.java
+--- a/src/main/java/com/project/food_delivery/services/CompanyService.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/CompanyService.java	(date 1696338761624)
+@@ -1,7 +1,7 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.dtos.CompanyDTO;
++import com.project.food_delivery.dtos.CompanyDto;
+ 
+ public interface CompanyService {
+-    void addNewCompanyIfNotExist(CompanyDTO companyDTO);
++    void addNewCompanyIfNotExist(CompanyDto companyDTO);
+ }
+Index: src/main/java/com/project/food_delivery/dtos/ProductDataDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/ProductDataDto.java b/src/main/java/com/project/food_delivery/dtos/ProductDataDto.java
+new file mode 100644
+--- /dev/null	(date 1696338234797)
++++ b/src/main/java/com/project/food_delivery/dtos/ProductDataDto.java	(date 1696338234797)
+@@ -0,0 +1,12 @@
++package com.project.food_delivery.dtos;
++
++import lombok.Getter;
++import lombok.Setter;
++
++@Setter
++@Getter
++public class ProductDataDto {
++    private ProductMetadataDto productMetadataDTO;
++    private String place;
++    private String company;
++}
+Index: src/main/java/com/project/food_delivery/services/ProductJoinCompanyServiceImplements.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.CompanyDTO;\r\nimport com.project.food_delivery.dtos.ProductJoinCompanyDTO;\r\nimport com.project.food_delivery.dtos.ProductMetadataDTO;\r\nimport com.project.food_delivery.mapper_interfaces.CompanyMapper;\r\nimport com.project.food_delivery.mapper_interfaces.ProductJoinCompanyMapper;\r\nimport com.project.food_delivery.mapper_interfaces.ProductMetadataMapper;\r\nimport com.project.food_delivery.models.ProductsJoinCompanies;\r\nimport com.project.food_delivery.repositories.ProductJoinCompanyRepository;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.List;\r\n\r\n@Service\r\n@AllArgsConstructor\r\npublic class ProductJoinCompanyServiceImplements implements ProductJoinCompanyService{\r\n    private final ProductJoinCompanyRepository productJoinCompanyRepository;\r\n    private final ProductJoinCompanyMapper productJoinCompanyMapper;\r\n    private final ProductMetadataMapper productMetadataMapper;\r\n    private final CompanyMapper companyMapper;\r\n    @Override\r\n    public List<ProductJoinCompanyDTO> findProductInformationByProductCategory(String category) {\r\n        List<ProductsJoinCompanies> productsJoinCompanies = productJoinCompanyRepository.findAllByProductMetadata_ProductCategory_ProductCategory(category);\r\n        return productsJoinCompanies.stream().map(productJoinCompanyMapper::productJoinCompanyToDTO).toList();\r\n    }\r\n\r\n    @Override\r\n    public void addNewInformation(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO) {\r\n        productJoinCompanyRepository.save(new ProductsJoinCompanies(\r\n                productMetadataMapper.productMetadataToModel(productMetadataDTO),\r\n                companyMapper.companyDTOToModel(companyDTO)));\r\n    }\r\n\r\n    @Override\r\n    public boolean isDataExists(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO) {\r\n        List<ProductsJoinCompanies> productsJoinCompanies = productJoinCompanyRepository\r\n                .findAllByProductMetadata(productMetadataMapper.productMetadataToModel(productMetadataDTO));\r\n        boolean isFound = false;\r\n        for (ProductsJoinCompanies temp: productsJoinCompanies){\r\n            if (companyMapper.companyToDTO(temp.getCompany()) == companyDTO){\r\n                isFound = true;\r\n                break;\r\n            }\r\n        }\r\n        return isFound;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/ProductJoinCompanyServiceImplements.java b/src/main/java/com/project/food_delivery/services/ProductJoinCompanyServiceImplements.java
+--- a/src/main/java/com/project/food_delivery/services/ProductJoinCompanyServiceImplements.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/ProductJoinCompanyServiceImplements.java	(date 1696338991371)
+@@ -1,8 +1,11 @@
+ package com.project.food_delivery.services;
+ 
+ import com.project.food_delivery.dtos.CompanyDTO;
++import com.project.food_delivery.dtos.CompanyDto;
+ import com.project.food_delivery.dtos.ProductJoinCompanyDTO;
++import com.project.food_delivery.dtos.ProductJoinCompanyDto;
+ import com.project.food_delivery.dtos.ProductMetadataDTO;
++import com.project.food_delivery.dtos.ProductMetadataDto;
+ import com.project.food_delivery.mapper_interfaces.CompanyMapper;
+ import com.project.food_delivery.mapper_interfaces.ProductJoinCompanyMapper;
+ import com.project.food_delivery.mapper_interfaces.ProductMetadataMapper;
+@@ -21,20 +24,20 @@
+     private final ProductMetadataMapper productMetadataMapper;
+     private final CompanyMapper companyMapper;
+     @Override
+-    public List<ProductJoinCompanyDTO> findProductInformationByProductCategory(String category) {
++    public List<ProductJoinCompanyDto> findProductInformationByProductCategory(String category) {
+         List<ProductsJoinCompanies> productsJoinCompanies = productJoinCompanyRepository.findAllByProductMetadata_ProductCategory_ProductCategory(category);
+         return productsJoinCompanies.stream().map(productJoinCompanyMapper::productJoinCompanyToDTO).toList();
+     }
+ 
+     @Override
+-    public void addNewInformation(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO) {
++    public void addNewInformation(CompanyDto companyDTO, ProductMetadataDto productMetadataDTO) {
+         productJoinCompanyRepository.save(new ProductsJoinCompanies(
+                 productMetadataMapper.productMetadataToModel(productMetadataDTO),
+                 companyMapper.companyDTOToModel(companyDTO)));
+     }
+ 
+     @Override
+-    public boolean isDataExists(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO) {
++    public boolean isDataExists(CompanyDto companyDTO, ProductMetadataDto productMetadataDTO) {
+         List<ProductsJoinCompanies> productsJoinCompanies = productJoinCompanyRepository
+                 .findAllByProductMetadata(productMetadataMapper.productMetadataToModel(productMetadataDTO));
+         boolean isFound = false;
+Index: src/main/java/com/project/food_delivery/services/ProductJoinCompanyService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.CompanyDTO;\r\nimport com.project.food_delivery.dtos.ProductJoinCompanyDTO;\r\nimport com.project.food_delivery.dtos.ProductMetadataDTO;\r\n\r\nimport java.util.List;\r\n\r\npublic interface ProductJoinCompanyService {\r\n    List<ProductJoinCompanyDTO> findProductInformationByProductCategory(String category);\r\n    void addNewInformation(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO);\r\n    boolean isDataExists(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/ProductJoinCompanyService.java b/src/main/java/com/project/food_delivery/services/ProductJoinCompanyService.java
+--- a/src/main/java/com/project/food_delivery/services/ProductJoinCompanyService.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/ProductJoinCompanyService.java	(date 1696338761611)
+@@ -1,13 +1,13 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.dtos.CompanyDTO;
+-import com.project.food_delivery.dtos.ProductJoinCompanyDTO;
+-import com.project.food_delivery.dtos.ProductMetadataDTO;
++import com.project.food_delivery.dtos.CompanyDto;
++import com.project.food_delivery.dtos.ProductJoinCompanyDto;
++import com.project.food_delivery.dtos.ProductMetadataDto;
+ 
+ import java.util.List;
+ 
+ public interface ProductJoinCompanyService {
+-    List<ProductJoinCompanyDTO> findProductInformationByProductCategory(String category);
+-    void addNewInformation(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO);
+-    boolean isDataExists(CompanyDTO companyDTO, ProductMetadataDTO productMetadataDTO);
++    List<ProductJoinCompanyDto> findProductInformationByProductCategory(String category);
++    void addNewInformation(CompanyDto companyDTO, ProductMetadataDto productMetadataDTO);
++    boolean isDataExists(CompanyDto companyDTO, ProductMetadataDto productMetadataDTO);
+ }
+Index: src/main/java/com/project/food_delivery/dtos/PlaceDataDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/PlaceDataDto.java b/src/main/java/com/project/food_delivery/dtos/PlaceDataDto.java
+new file mode 100644
+--- /dev/null	(date 1696338234712)
++++ b/src/main/java/com/project/food_delivery/dtos/PlaceDataDto.java	(date 1696338234712)
+@@ -0,0 +1,12 @@
++package com.project.food_delivery.dtos;
++
++import lombok.Getter;
++import lombok.Setter;
++
++@Setter
++@Getter
++public class PlaceDataDto {
++    String name;
++    AddressDto address;
++    String placeCategory;
++}
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/ProductJoinCompanyMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.CompanyDTO;\r\nimport com.project.food_delivery.dtos.ProductJoinCompanyDTO;\r\nimport com.project.food_delivery.dtos.ProductMetadataDTO;\r\nimport com.project.food_delivery.models.ProductsJoinCompanies;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\", uses = {ProductMetadataDTO.class, CompanyDTO.class})\r\npublic interface ProductJoinCompanyMapper {\r\n    ProductJoinCompanyDTO productJoinCompanyToDTO(ProductsJoinCompanies productsJoinCompanies);\r\n    ProductsJoinCompanies productJoinCompanyDTOToModel(ProductJoinCompanyDTO productJoinCompanyDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductJoinCompanyMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductJoinCompanyMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductJoinCompanyMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductJoinCompanyMapper.java	(date 1696338234906)
+@@ -1,14 +1,13 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.CompanyDTO;
+-import com.project.food_delivery.dtos.ProductJoinCompanyDTO;
+-import com.project.food_delivery.dtos.ProductMetadataDTO;
++import com.project.food_delivery.dtos.CompanyDto;
++import com.project.food_delivery.dtos.ProductJoinCompanyDto;
++import com.project.food_delivery.dtos.ProductMetadataDto;
+ import com.project.food_delivery.models.ProductsJoinCompanies;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+-@Mapper(componentModel = "spring", uses = {ProductMetadataDTO.class, CompanyDTO.class})
++@Mapper(componentModel = "spring", uses = {ProductMetadataDto.class, CompanyDto.class})
+ public interface ProductJoinCompanyMapper {
+-    ProductJoinCompanyDTO productJoinCompanyToDTO(ProductsJoinCompanies productsJoinCompanies);
+-    ProductsJoinCompanies productJoinCompanyDTOToModel(ProductJoinCompanyDTO productJoinCompanyDTO);
++    ProductJoinCompanyDto productJoinCompanyToDTO(ProductsJoinCompanies productsJoinCompanies);
++    ProductsJoinCompanies productJoinCompanyDTOToModel(ProductJoinCompanyDto productJoinCompanyDTO);
+ }
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/CompanyMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.CompanyDTO;\r\nimport com.project.food_delivery.models.Company;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\")\r\npublic interface CompanyMapper {\r\n    CompanyDTO companyToDTO(Company company);\r\n    Company companyDTOToModel(CompanyDTO companyDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/CompanyMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/CompanyMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/CompanyMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/CompanyMapper.java	(date 1696338234858)
+@@ -1,12 +1,11 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.CompanyDTO;
++import com.project.food_delivery.dtos.CompanyDto;
+ import com.project.food_delivery.models.Company;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+ @Mapper(componentModel = "spring")
+ public interface CompanyMapper {
+-    CompanyDTO companyToDTO(Company company);
+-    Company companyDTOToModel(CompanyDTO companyDTO);
++    CompanyDto companyToDTO(Company company);
++    Company companyDTOToModel(CompanyDto companyDTO);
+ }
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/ProductMetadataMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.ProductMetadataDTO;\r\nimport com.project.food_delivery.models.ProductMetadata;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\", uses = {ProductCharacteristicMapper.class, ProductCategoryMapper.class})\r\npublic interface ProductMetadataMapper {\r\n    ProductMetadataDTO productMetadataToDTO(ProductMetadata productMetadata);\r\n    ProductMetadata productMetadataToModel(ProductMetadataDTO productMetadataDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductMetadataMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductMetadataMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductMetadataMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductMetadataMapper.java	(date 1696338234914)
+@@ -1,12 +1,11 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.ProductMetadataDTO;
++import com.project.food_delivery.dtos.ProductMetadataDto;
+ import com.project.food_delivery.models.ProductMetadata;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+ @Mapper(componentModel = "spring", uses = {ProductCharacteristicMapper.class, ProductCategoryMapper.class})
+ public interface ProductMetadataMapper {
+-    ProductMetadataDTO productMetadataToDTO(ProductMetadata productMetadata);
+-    ProductMetadata productMetadataToModel(ProductMetadataDTO productMetadataDTO);
++    ProductMetadataDto productMetadataToDTO(ProductMetadata productMetadata);
++    ProductMetadata productMetadataToModel(ProductMetadataDto productMetadataDTO);
+ }
+Index: src/main/java/com/project/food_delivery/dtos/ProductMetadataDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\nimport org.springframework.stereotype.Component;\r\n\r\n@Setter\r\n@Getter\r\n@Component\r\npublic class ProductMetadataDTO {\r\n    private String name;\r\n    private ProductCategoryDTO productCategory;\r\n    private ProductCharacteristicDTO productCharacteristic;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/ProductMetadataDTO.java b/src/main/java/com/project/food_delivery/dtos/ProductMetadataDto.java
+rename from src/main/java/com/project/food_delivery/dtos/ProductMetadataDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/ProductMetadataDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/ProductMetadataDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/ProductMetadataDto.java	(date 1696338761592)
+@@ -7,8 +7,8 @@
+ @Setter
+ @Getter
+ @Component
+-public class ProductMetadataDTO {
++public class ProductMetadataDto {
+     private String name;
+-    private ProductCategoryDTO productCategory;
+-    private ProductCharacteristicDTO productCharacteristic;
++    private ProductCategoryDto productCategory;
++    private ProductCharacteristicDto productCharacteristic;
+ }
+Index: src/main/java/com/project/food_delivery/models/WeightMeasurement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\npublic enum WeightMeasurement {\r\n    KILOS,\r\n    GRAMS,\r\n    LITRE;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/WeightMeasurement.java b/src/main/java/com/project/food_delivery/models/WeightMeasurement.java
+--- a/src/main/java/com/project/food_delivery/models/WeightMeasurement.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/WeightMeasurement.java	(date 1696338234985)
+@@ -3,5 +3,6 @@
+ public enum WeightMeasurement {
+     KILOS,
+     GRAMS,
+-    LITRE;
++    LITRE,
++    kg;
+ }
+Index: src/main/java/com/project/food_delivery/dtos/CompanyDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\nimport org.springframework.stereotype.Component;\r\n\r\n@Getter\r\n@Setter\r\n@AllArgsConstructor\r\npublic class CompanyDTO {\r\n    private String name;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/CompanyDTO.java b/src/main/java/com/project/food_delivery/dtos/CompanyDto.java
+rename from src/main/java/com/project/food_delivery/dtos/CompanyDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/CompanyDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/CompanyDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/CompanyDto.java	(date 1696338761528)
+@@ -3,11 +3,10 @@
+ import lombok.AllArgsConstructor;
+ import lombok.Getter;
+ import lombok.Setter;
+-import org.springframework.stereotype.Component;
+ 
+ @Getter
+ @Setter
+ @AllArgsConstructor
+-public class CompanyDTO {
++public class CompanyDto {
+     private String name;
+ }
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/ProductCharacteristicMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.ProductCharacteristicDTO;\r\nimport com.project.food_delivery.models.ProductCharacteristic;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\")\r\npublic interface ProductCharacteristicMapper {\r\n    ProductCharacteristicDTO productCharacteristicToDTO(ProductCharacteristic productCharacteristic);\r\n    ProductCharacteristic productCharacteristicDTOToModel(ProductCharacteristicDTO productCharacteristicDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCharacteristicMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCharacteristicMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCharacteristicMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCharacteristicMapper.java	(date 1696338234898)
+@@ -1,12 +1,11 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.ProductCharacteristicDTO;
++import com.project.food_delivery.dtos.ProductCharacteristicDto;
+ import com.project.food_delivery.models.ProductCharacteristic;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+ @Mapper(componentModel = "spring")
+ public interface ProductCharacteristicMapper {
+-    ProductCharacteristicDTO productCharacteristicToDTO(ProductCharacteristic productCharacteristic);
+-    ProductCharacteristic productCharacteristicDTOToModel(ProductCharacteristicDTO productCharacteristicDTO);
++    ProductCharacteristicDto productCharacteristicToDTO(ProductCharacteristic productCharacteristic);
++    ProductCharacteristic productCharacteristicDTOToModel(ProductCharacteristicDto productCharacteristicDTO);
+ }
+Index: src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Setter\r\n@Getter\r\npublic class ProductCharacteristicDTO {\r\n    private Float price;\r\n    private Float weight;\r\n    private Integer availableAmount;\r\n    private String weightMeasurement;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDTO.java b/src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDto.java
+rename from src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/ProductCharacteristicDto.java	(date 1696338761734)
+@@ -5,7 +5,7 @@
+ 
+ @Setter
+ @Getter
+-public class ProductCharacteristicDTO {
++public class ProductCharacteristicDto {
+     private Float price;
+     private Float weight;
+     private Integer availableAmount;
+Index: src/main/java/com/project/food_delivery/models/ProductMetadata.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n\r\n@Entity\r\n@Table(name = \"product_metadata\")\r\n@RequiredArgsConstructor\r\n@ToString\r\n@Getter\r\n@Setter\r\npublic class ProductMetadata {\r\n    @Id\r\n    @Column(name = \"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer id;\r\n\r\n    @Column(name = \"name\")\r\n    private String name;\r\n\r\n    @ManyToOne\r\n    @JoinColumn(name = \"product_category_id\", referencedColumnName = \"id\")\r\n    private ProductCategory productCategory;\r\n\r\n    @OneToOne\r\n    @JoinColumn(name = \"product_characteristics_id\", referencedColumnName = \"id\")\r\n    private ProductCharacteristic productCharacteristic;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/ProductMetadata.java b/src/main/java/com/project/food_delivery/models/ProductMetadata.java
+--- a/src/main/java/com/project/food_delivery/models/ProductMetadata.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/ProductMetadata.java	(date 1696338234975)
+@@ -3,6 +3,8 @@
+ import jakarta.persistence.*;
+ import lombok.*;
+ 
++import java.util.List;
++
+ 
+ @Entity
+ @Table(name = "product_metadata")
+@@ -27,4 +29,17 @@
+     @JoinColumn(name = "product_characteristics_id", referencedColumnName = "id")
+     private ProductCharacteristic productCharacteristic;
+ 
++    @ManyToMany( cascade = {
++            CascadeType.MERGE,
++            CascadeType.PERSIST
++    })
++    @JoinTable(name = "products_join_companies",
++    joinColumns = {
++            @JoinColumn(name = "product_id", referencedColumnName = "id")
++    },
++    inverseJoinColumns = {
++            @JoinColumn(name = "company_id", referencedColumnName = "id")
++    })
++    private List<Company> companies;
++
+ }
+Index: src/main/java/com/project/food_delivery/RequestBodies/ProductCategoryAndDescription.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/RequestBodies/ProductCategoryAndDescription.java b/src/main/java/com/project/food_delivery/dtos/ProductCategoryAndDescriptionDto.java
+rename from src/main/java/com/project/food_delivery/RequestBodies/ProductCategoryAndDescription.java
+rename to src/main/java/com/project/food_delivery/dtos/ProductCategoryAndDescriptionDto.java
+--- a/src/main/java/com/project/food_delivery/RequestBodies/ProductCategoryAndDescription.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/ProductCategoryAndDescriptionDto.java	(date 1696338234769)
+@@ -1,11 +1,11 @@
+-package com.project.food_delivery.RequestBodies;
++package com.project.food_delivery.dtos;
+ 
+ import lombok.Getter;
+ import lombok.Setter;
+ 
+ @Getter
+ @Setter
+-public class ProductCategoryAndDescription {
++public class ProductCategoryAndDescriptionDto {
+     private String category;
+     private String description;
+ }
+Index: src/main/java/com/project/food_delivery/dtos/UsernameAndAddressDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/UsernameAndAddressDto.java b/src/main/java/com/project/food_delivery/dtos/UsernameAndAddressDto.java
+new file mode 100644
+--- /dev/null	(date 1696338234831)
++++ b/src/main/java/com/project/food_delivery/dtos/UsernameAndAddressDto.java	(date 1696338234831)
+@@ -0,0 +1,10 @@
++package com.project.food_delivery.dtos;
++
++
++import lombok.Data;
++
++@Data
++public class UsernameAndAddressDto {
++    String username;
++    Integer addressId;
++}
+Index: src/main/java/com/project/food_delivery/models/ProductCharacteristic.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"product_characteristics\")\r\n@RequiredArgsConstructor\r\n@ToString\r\n@Getter\r\n@Setter\r\npublic class ProductCharacteristic {\r\n    @Id\r\n    @Column(name = \"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer id;\r\n\r\n    @Column(name = \"price\")\r\n    private Float price;\r\n\r\n    @Column(name = \"weight\")\r\n    private Float weight;\r\n\r\n    @Column(name = \"available_amount\")\r\n    private Integer availableAmount;\r\n\r\n    @Column(name = \"weight_measurement\")\r\n    @Enumerated(EnumType.STRING)\r\n    private WeightMeasurement weightMeasurement;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/ProductCharacteristic.java b/src/main/java/com/project/food_delivery/models/ProductCharacteristic.java
+--- a/src/main/java/com/project/food_delivery/models/ProductCharacteristic.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/ProductCharacteristic.java	(date 1696338234965)
+@@ -16,10 +16,10 @@
+     private Integer id;
+ 
+     @Column(name = "price")
+-    private Float price;
++    private Double price;
+ 
+     @Column(name = "weight")
+-    private Float weight;
++    private Double weight;
+ 
+     @Column(name = "available_amount")
+     private Integer availableAmount;
+Index: src/main/java/com/project/food_delivery/models/ProductCategoryDescription.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"product_categories_descriptions\")\r\n@RequiredArgsConstructor\r\n@ToString\r\n@Getter\r\n@Setter\r\npublic class ProductCategoryDescription {\r\n    @Id\r\n    @Column(name = \"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer id;\r\n\r\n    public ProductCategoryDescription(String categoryDescription) {\r\n        this.categoryDescription = categoryDescription;\r\n    }\r\n\r\n    @Column(name = \"category_description\")\r\n    private String categoryDescription;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/ProductCategoryDescription.java b/src/main/java/com/project/food_delivery/models/ProductCategoryDescription.java
+--- a/src/main/java/com/project/food_delivery/models/ProductCategoryDescription.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/ProductCategoryDescription.java	(date 1696338234955)
+@@ -15,7 +15,7 @@
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Integer id;
+ 
+-    public ProductCategoryDescription(String categoryDescription) {
++     public ProductCategoryDescription(String categoryDescription) {
+         this.categoryDescription = categoryDescription;
+     }
+ 
+Index: src/main/java/com/project/food_delivery/response_bodies/UserInformation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/response_bodies/UserInformation.java b/src/main/java/com/project/food_delivery/dtos/UserInformationDto.java
+rename from src/main/java/com/project/food_delivery/response_bodies/UserInformation.java
+rename to src/main/java/com/project/food_delivery/dtos/UserInformationDto.java
+--- a/src/main/java/com/project/food_delivery/response_bodies/UserInformation.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/UserInformationDto.java	(date 1696338234806)
+@@ -1,6 +1,5 @@
+-package com.project.food_delivery.response_bodies;
++package com.project.food_delivery.dtos;
+ 
+-import com.project.food_delivery.dtos.AddressDTO;
+ import lombok.AllArgsConstructor;
+ import lombok.Getter;
+ import lombok.Setter;
+@@ -9,9 +8,9 @@
+ @Getter
+ @Setter
+ @AllArgsConstructor
+-public class UserInformation {
++public class UserInformationDto {
+     private String username;
+     private String email;
+     private String phoneNumber;
+-    private List<AddressDTO> addressDTOS;
++    private List<AddressDto> addressDTOS;
+ }
+Index: src/main/java/com/project/food_delivery/models/Company.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"companies\")\r\n@RequiredArgsConstructor\r\n@ToString\r\n@Getter\r\n@Setter\r\npublic class Company {\r\n    @Id\r\n    @Column(name = \"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer id;\r\n\r\n    @Column(name = \"name\")\r\n    private String name;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/Company.java b/src/main/java/com/project/food_delivery/models/Company.java
+--- a/src/main/java/com/project/food_delivery/models/Company.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/Company.java	(date 1696338234940)
+@@ -3,6 +3,8 @@
+ import jakarta.persistence.*;
+ import lombok.*;
+ 
++import java.util.List;
++
+ @Entity
+ @Table(name = "companies")
+ @RequiredArgsConstructor
+@@ -17,4 +19,8 @@
+ 
+     @Column(name = "name")
+     private String name;
++
++    @ManyToMany(mappedBy = "companies")
++    @ToString.Exclude
++    private List<ProductMetadata> productMetadata;
+ }
+Index: src/main/java/com/project/food_delivery/models/Basket.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport com.project.food_delivery.dtos.ProductMetadataDTO;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\n\r\n@Getter\r\n@Setter\r\npublic class Basket {\r\n    private HashMap<Place, List<ProductMetadataDTO>> basketHashMap;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/Basket.java b/src/main/java/com/project/food_delivery/models/Basket.java
+--- a/src/main/java/com/project/food_delivery/models/Basket.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/Basket.java	(date 1696338234931)
+@@ -1,6 +1,6 @@
+ package com.project.food_delivery.models;
+ 
+-import com.project.food_delivery.dtos.ProductMetadataDTO;
++import com.project.food_delivery.dtos.ProductMetadataDto;
+ import lombok.Getter;
+ import lombok.Setter;
+ 
+@@ -10,5 +10,5 @@
+ @Getter
+ @Setter
+ public class Basket {
+-    private HashMap<Place, List<ProductMetadataDTO>> basketHashMap;
++    private HashMap<Place, List<ProductMetadataDto>> basketHashMap;
+ }
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/ProductCategoryMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.ProductCategoryDTO;\r\nimport com.project.food_delivery.models.ProductCategory;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\")\r\npublic interface ProductCategoryMapper {\r\n    ProductCategoryDTO productCategoryToDTO(ProductCategory productCategory);\r\n    ProductCategory productCategoryDTOToModel(ProductCategoryDTO productCategoryDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCategoryMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCategoryMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCategoryMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/ProductCategoryMapper.java	(date 1696338234890)
+@@ -1,12 +1,11 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.ProductCategoryDTO;
++import com.project.food_delivery.dtos.ProductCategoryDto;
+ import com.project.food_delivery.models.ProductCategory;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+ @Mapper(componentModel = "spring")
+ public interface ProductCategoryMapper {
+-    ProductCategoryDTO productCategoryToDTO(ProductCategory productCategory);
+-    ProductCategory productCategoryDTOToModel(ProductCategoryDTO productCategoryDTO);
++    ProductCategoryDto productCategoryToDTO(ProductCategory productCategory);
++    ProductCategory productCategoryDTOToModel(ProductCategoryDto productCategoryDTO);
+ }
+Index: src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Getter\r\n@Setter\r\npublic class ProductJoinCompanyDTO {\r\n    private ProductMetadataDTO productMetadata;\r\n    private CompanyDTO company;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDTO.java b/src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDto.java
+rename from src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/ProductJoinCompanyDto.java	(date 1696338761630)
+@@ -5,7 +5,7 @@
+ 
+ @Getter
+ @Setter
+-public class ProductJoinCompanyDTO {
+-    private ProductMetadataDTO productMetadata;
+-    private CompanyDTO company;
++public class ProductJoinCompanyDto {
++    private ProductMetadataDto productMetadata;
++    private CompanyDto company;
+ }
+Index: src/main/java/com/project/food_delivery/models/Order.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n@Entity\r\n@Table(name = \"orders\")\r\n@RequiredArgsConstructor\r\n@ToString\r\n@Getter\r\n@Setter\r\npublic class Order {\r\n    @Id\r\n    @Column(name = \"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer id;\r\n\r\n    @Column(name = \"date_and_time\")\r\n    private LocalDateTime dateAndTime;\r\n\r\n    @Column(name = \"price\")\r\n    private Float price;\r\n\r\n    @Column(name = \"payment_type\")\r\n    @Enumerated(EnumType.STRING)\r\n    private Payment payment;\r\n\r\n    @Column(name = \"status\")\r\n    @Enumerated(EnumType.STRING)\r\n    private Status status;\r\n\r\n    @ManyToOne\r\n    @JoinColumn(name = \"user_id\", referencedColumnName = \"id\")\r\n    private User user;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/Order.java b/src/main/java/com/project/food_delivery/models/Order.java
+--- a/src/main/java/com/project/food_delivery/models/Order.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/Order.java	(date 1696338234948)
+@@ -21,7 +21,7 @@
+     private LocalDateTime dateAndTime;
+ 
+     @Column(name = "price")
+-    private Float price;
++    private Double price;
+ 
+     @Column(name = "payment_type")
+     @Enumerated(EnumType.STRING)
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/PlaceJoinAddressMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.AddressDTO;\r\nimport com.project.food_delivery.dtos.PlaceDTO;\r\nimport com.project.food_delivery.dtos.PlaceJoinAddressDTO;\r\nimport com.project.food_delivery.models.PlacesJoinAddresses;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\", uses = {PlaceDTO.class, AddressDTO.class})\r\npublic interface PlaceJoinAddressMapper {\r\n    PlaceJoinAddressDTO placeJoinAddressToDTO(PlacesJoinAddresses placesJoinAddresses);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceJoinAddressMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceJoinAddressMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceJoinAddressMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceJoinAddressMapper.java	(date 1696338234874)
+@@ -1,14 +1,13 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.AddressDTO;
+-import com.project.food_delivery.dtos.PlaceDTO;
+-import com.project.food_delivery.dtos.PlaceJoinAddressDTO;
++import com.project.food_delivery.dtos.AddressDto;
++import com.project.food_delivery.dtos.PlaceDto;
++import com.project.food_delivery.dtos.PlaceJoinAddressDto;
+ import com.project.food_delivery.models.PlacesJoinAddresses;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+-@Mapper(componentModel = "spring", uses = {PlaceDTO.class, AddressDTO.class})
++@Mapper(componentModel = "spring", uses = {PlaceDto.class, AddressDto.class})
+ public interface PlaceJoinAddressMapper {
+-    PlaceJoinAddressDTO placeJoinAddressToDTO(PlacesJoinAddresses placesJoinAddresses);
++    PlaceJoinAddressDto placeJoinAddressToDTO(PlacesJoinAddresses placesJoinAddresses);
+ 
+ }
+Index: src/main/java/com/project/food_delivery/models/Address.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.models;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"addresses\")\r\n@AllArgsConstructor\r\n@RequiredArgsConstructor\r\n@ToString\r\n@Getter\r\n@Setter\r\npublic class Address {\r\n    @Id\r\n    @Column(name = \"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer id;\r\n\r\n    @Column(name = \"city\")\r\n    private String city;\r\n\r\n    @Column(name = \"street\")\r\n    private String street;\r\n\r\n    @Column(name = \"building_num\")\r\n    private String buildingNum;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/models/Address.java b/src/main/java/com/project/food_delivery/models/Address.java
+--- a/src/main/java/com/project/food_delivery/models/Address.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/models/Address.java	(date 1696338234923)
+@@ -1,7 +1,12 @@
+ package com.project.food_delivery.models;
+ 
++
+ import jakarta.persistence.*;
+-import lombok.*;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.RequiredArgsConstructor;
++import lombok.ToString;
++import lombok.Setter;
+ 
+ @Entity
+ @Table(name = "addresses")
+Index: src/main/java/com/project/food_delivery/dtos/OrderDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport com.project.food_delivery.models.Payment;\r\nimport com.project.food_delivery.models.Status;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\n@Getter\r\n@Setter\r\npublic class OrderDto {\r\n    private LocalDateTime dateAndTime;\r\n    private Float price;\r\n    private Payment payment;\r\n    private Status status;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/OrderDto.java b/src/main/java/com/project/food_delivery/dtos/OrderDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/OrderDto.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/OrderDto.java	(date 1696338234701)
+@@ -2,16 +2,13 @@
+ 
+ import com.project.food_delivery.models.Payment;
+ import com.project.food_delivery.models.Status;
+-import lombok.Getter;
+-import lombok.Setter;
+-
++import lombok.Data;
+ import java.time.LocalDateTime;
+ 
+-@Getter
+-@Setter
++@Data
+ public class OrderDto {
+     private LocalDateTime dateAndTime;
+-    private Float price;
++    private Double price;
+     private Payment payment;
+     private Status status;
+ }
+Index: src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Setter\r\n@Getter\r\npublic class PlaceJoinAddressDTO {\r\n    PlaceDTO place;\r\n    AddressDTO address;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDTO.java b/src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDto.java
+rename from src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/PlaceJoinAddressDto.java	(date 1696338761741)
+@@ -5,7 +5,7 @@
+ 
+ @Setter
+ @Getter
+-public class PlaceJoinAddressDTO {
+-    PlaceDTO place;
+-    AddressDTO address;
++public class PlaceJoinAddressDto {
++    PlaceDto place;
++    AddressDto address;
+ }
+Index: src/main/java/com/project/food_delivery/services/ProductCategoryDescriptionServiceImplements.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.models.ProductCategoryDescription;\r\nimport com.project.food_delivery.repositories.ProductCategoryDescriptionRepository;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.stereotype.Service;\r\n\r\n@Service\r\n@AllArgsConstructor\r\npublic class ProductCategoryDescriptionServiceImplements implements ProductCategoryDescriptionService{\r\n    private final ProductCategoryDescriptionRepository productCategoryDescriptionRepository;\r\n    @Override\r\n    public void addDescription(String description) {\r\n        productCategoryDescriptionRepository.save(new ProductCategoryDescription(description));\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/ProductCategoryDescriptionServiceImplements.java b/src/main/java/com/project/food_delivery/services/ProductCategoryDescriptionServiceImplements.java
+--- a/src/main/java/com/project/food_delivery/services/ProductCategoryDescriptionServiceImplements.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/ProductCategoryDescriptionServiceImplements.java	(date 1696338829765)
+@@ -11,6 +11,8 @@
+     private final ProductCategoryDescriptionRepository productCategoryDescriptionRepository;
+     @Override
+     public void addDescription(String description) {
+-        productCategoryDescriptionRepository.save(new ProductCategoryDescription(description));
++        if (productCategoryDescriptionRepository.findByCategoryDescription(description).isEmpty()){
++            productCategoryDescriptionRepository.save(new ProductCategoryDescription(description));
++        }
+     }
+ }
+Index: src/main/java/com/project/food_delivery/rest_controllers/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.rest_controllers;\r\n\r\nimport com.project.food_delivery.RequestBodies.UsernameAndAddress;\r\nimport com.project.food_delivery.dtos.AddressDTO;\r\nimport com.project.food_delivery.response_bodies.UserInformation;\r\nimport com.project.food_delivery.services.UserJoinAddressService;\r\nimport com.project.food_delivery.services.UserService;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\n@RestController\r\n@AllArgsConstructor\r\n@RequestMapping(\"/users\")\r\npublic class UserController {\r\n    private final UserService userService;\r\n    private final UserJoinAddressService userJoinAddressService;\r\n    @GetMapping(\"/{username}\")\r\n    public UserInformation getUserInformationByUsername(@PathVariable(name = \"username\") String username){\r\n        return userJoinAddressService.findUserInformationByUsername(username);\r\n    }\r\n\r\n    @PutMapping(\"/{username}\")\r\n    public AddressDTO changeUserAddressByUsername(@PathVariable(name = \"username\") String username, @RequestBody AddressDTO address\r\n            , @RequestParam(name = \"address_id\") Integer address_id){\r\n        return userJoinAddressService.changeUserAddressByUsername(username, address, address_id);\r\n    }\r\n\r\n    @DeleteMapping(\"/address\")\r\n    public void deleteUserAddressByUsername(@RequestBody UsernameAndAddress usernameAndAddress){\r\n        userJoinAddressService.deleteUserAddressByUsername(usernameAndAddress);\r\n    }\r\n\r\n    @DeleteMapping(\"/{username}\")\r\n    public void deleteUserAccount(@PathVariable(name = \"username\") String username){\r\n        userService.deleteUserAccount(username);\r\n    }\r\n\r\n    @PostMapping(\"/address/{username}\")\r\n    public void addUserAddressByUsername(@PathVariable(name = \"username\") String username, @RequestBody AddressDTO addressDTO){\r\n        userJoinAddressService.addUserAddressByUsername(username, addressDTO);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/rest_controllers/UserController.java b/src/main/java/com/project/food_delivery/rest_controllers/UserController.java
+--- a/src/main/java/com/project/food_delivery/rest_controllers/UserController.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/rest_controllers/UserController.java	(date 1696338235050)
+@@ -1,8 +1,8 @@
+ package com.project.food_delivery.rest_controllers;
+ 
+-import com.project.food_delivery.RequestBodies.UsernameAndAddress;
+-import com.project.food_delivery.dtos.AddressDTO;
+-import com.project.food_delivery.response_bodies.UserInformation;
++import com.project.food_delivery.dtos.UsernameAndAddressDto;
++import com.project.food_delivery.dtos.AddressDto;
++import com.project.food_delivery.dtos.UserInformationDto;
+ import com.project.food_delivery.services.UserJoinAddressService;
+ import com.project.food_delivery.services.UserService;
+ import lombok.AllArgsConstructor;
+@@ -15,18 +15,18 @@
+     private final UserService userService;
+     private final UserJoinAddressService userJoinAddressService;
+     @GetMapping("/{username}")
+-    public UserInformation getUserInformationByUsername(@PathVariable(name = "username") String username){
++    public UserInformationDto getUserInformationByUsername(@PathVariable(name = "username") String username){
+         return userJoinAddressService.findUserInformationByUsername(username);
+     }
+ 
+     @PutMapping("/{username}")
+-    public AddressDTO changeUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDTO address
++    public AddressDto changeUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto address
+             , @RequestParam(name = "address_id") Integer address_id){
+         return userJoinAddressService.changeUserAddressByUsername(username, address, address_id);
+     }
+ 
+     @DeleteMapping("/address")
+-    public void deleteUserAddressByUsername(@RequestBody UsernameAndAddress usernameAndAddress){
++    public void deleteUserAddressByUsername(@RequestBody UsernameAndAddressDto usernameAndAddress){
+         userJoinAddressService.deleteUserAddressByUsername(usernameAndAddress);
+     }
+ 
+@@ -36,7 +36,7 @@
+     }
+ 
+     @PostMapping("/address/{username}")
+-    public void addUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDTO addressDTO){
++    public void addUserAddressByUsername(@PathVariable(name = "username") String username, @RequestBody AddressDto addressDTO){
+         userJoinAddressService.addUserAddressByUsername(username, addressDTO);
+     }
+ }
+Index: src/main/java/com/project/food_delivery/dtos/ProductCategoryDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Setter\r\n@Getter\r\npublic class ProductCategoryDTO {\r\n    private String productCategory;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/ProductCategoryDTO.java b/src/main/java/com/project/food_delivery/dtos/ProductCategoryDto.java
+rename from src/main/java/com/project/food_delivery/dtos/ProductCategoryDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/ProductCategoryDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/ProductCategoryDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/ProductCategoryDto.java	(date 1696338761572)
+@@ -5,6 +5,6 @@
+ 
+ @Setter
+ @Getter
+-public class ProductCategoryDTO {
++public class ProductCategoryDto {
+     private String productCategory;
+ }
+Index: src/main/java/com/project/food_delivery/services/PlaceJoinAddressService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.AddressDTO;\r\nimport com.project.food_delivery.dtos.PlaceDTO;\r\nimport com.project.food_delivery.dtos.PlaceJoinAddressDTO;\r\nimport com.project.food_delivery.models.PlacesJoinAddresses;\r\n\r\nimport java.util.List;\r\n\r\npublic interface PlaceJoinAddressService {\r\n    void addNewData(AddressDTO addressDTO, PlaceDTO placeDTO);\r\n    List<PlaceJoinAddressDTO> findAllByCity(String city);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/PlaceJoinAddressService.java b/src/main/java/com/project/food_delivery/services/PlaceJoinAddressService.java
+--- a/src/main/java/com/project/food_delivery/services/PlaceJoinAddressService.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/PlaceJoinAddressService.java	(date 1696338761695)
+@@ -1,14 +1,13 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.dtos.AddressDTO;
+-import com.project.food_delivery.dtos.PlaceDTO;
+-import com.project.food_delivery.dtos.PlaceJoinAddressDTO;
+-import com.project.food_delivery.models.PlacesJoinAddresses;
++import com.project.food_delivery.dtos.AddressDto;
++import com.project.food_delivery.dtos.PlaceDto;
++import com.project.food_delivery.dtos.PlaceJoinAddressDto;
+ 
+ import java.util.List;
+ 
+ public interface PlaceJoinAddressService {
+-    void addNewData(AddressDTO addressDTO, PlaceDTO placeDTO);
+-    List<PlaceJoinAddressDTO> findAllByCity(String city);
++    void addNewData(AddressDto addressDTO, PlaceDto placeDTO);
++    List<PlaceJoinAddressDto> findAllByCity(String city);
+ 
+ }
+Index: src/main/java/com/project/food_delivery/repositories/ProductCategoryDescriptionRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.repositories;\r\n\r\nimport com.project.food_delivery.models.ProductCategoryDescription;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\nimport org.springframework.stereotype.Repository;\r\n\r\n@Repository\r\npublic interface ProductCategoryDescriptionRepository extends JpaRepository<ProductCategoryDescription, Integer> {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/repositories/ProductCategoryDescriptionRepository.java b/src/main/java/com/project/food_delivery/repositories/ProductCategoryDescriptionRepository.java
+--- a/src/main/java/com/project/food_delivery/repositories/ProductCategoryDescriptionRepository.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/repositories/ProductCategoryDescriptionRepository.java	(date 1696338234993)
+@@ -3,7 +3,9 @@
+ import com.project.food_delivery.models.ProductCategoryDescription;
+ import org.springframework.data.jpa.repository.JpaRepository;
+ import org.springframework.stereotype.Repository;
++import java.util.Optional;
+ 
+ @Repository
+ public interface ProductCategoryDescriptionRepository extends JpaRepository<ProductCategoryDescription, Integer> {
++    Optional<ProductCategoryDescription> findByCategoryDescription(String categoryDescription);
+ }
+Index: src/main/java/com/project/food_delivery/rest_controllers/PlaceController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.rest_controllers;\r\n\r\nimport com.project.food_delivery.RequestBodies.PlaceData;\r\nimport com.project.food_delivery.dtos.PlaceDTO;\r\nimport com.project.food_delivery.services.PlaceService;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport java.util.List;\r\n\r\n@RestController\r\n@AllArgsConstructor\r\n@RequestMapping(\"/places\")\r\npublic class PlaceController {\r\n    private final PlaceService placeService;\r\n    @GetMapping(\"?place-category='category'\")\r\n    @ResponseStatus(HttpStatus.OK)\r\n    public List<PlaceDTO> getPlacesByPlaceCategory(@RequestParam(name = \"category\") String category){\r\n        return placeService.getPlacesByPlaceCategory(category);\r\n    }\r\n\r\n    @GetMapping(\"?city='city'\")\r\n    @ResponseStatus(HttpStatus.OK)\r\n    public List<PlaceDTO> getPlacesByCity(@RequestParam(name = \"city\") String city){\r\n        return placeService.getPlacesByCity(city);\r\n    }\r\n\r\n    @PostMapping(\"\")\r\n    @ResponseStatus(HttpStatus.CREATED)\r\n    public void addPlace(@RequestBody PlaceData placeData){\r\n        placeService.addPlace(placeData);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/rest_controllers/PlaceController.java b/src/main/java/com/project/food_delivery/rest_controllers/PlaceController.java
+--- a/src/main/java/com/project/food_delivery/rest_controllers/PlaceController.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/rest_controllers/PlaceController.java	(date 1696338235017)
+@@ -1,7 +1,7 @@
+ package com.project.food_delivery.rest_controllers;
+ 
+-import com.project.food_delivery.RequestBodies.PlaceData;
+-import com.project.food_delivery.dtos.PlaceDTO;
++import com.project.food_delivery.dtos.PlaceDataDto;
++import com.project.food_delivery.dtos.PlaceDto;
+ import com.project.food_delivery.services.PlaceService;
+ import lombok.AllArgsConstructor;
+ import org.springframework.http.HttpStatus;
+@@ -15,19 +15,19 @@
+     private final PlaceService placeService;
+     @GetMapping("?place-category='category'")
+     @ResponseStatus(HttpStatus.OK)
+-    public List<PlaceDTO> getPlacesByPlaceCategory(@RequestParam(name = "category") String category){
++    public List<PlaceDto> getPlacesByPlaceCategory(@RequestParam(name = "category") String category){
+         return placeService.getPlacesByPlaceCategory(category);
+     }
+ 
+     @GetMapping("?city='city'")
+     @ResponseStatus(HttpStatus.OK)
+-    public List<PlaceDTO> getPlacesByCity(@RequestParam(name = "city") String city){
++    public List<PlaceDto> getPlacesByCity(@RequestParam(name = "city") String city){
+         return placeService.getPlacesByCity(city);
+     }
+ 
+     @PostMapping("")
+     @ResponseStatus(HttpStatus.CREATED)
+-    public void addPlace(@RequestBody PlaceData placeData){
++    public void addPlace(@RequestBody PlaceDataDto placeData){
+         placeService.addPlace(placeData);
+     }
+ }
+Index: src/main/java/com/project/food_delivery/dtos/AddressDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\nimport org.springframework.stereotype.Component;\r\n\r\n@Getter\r\n@Setter\r\n@Component\r\npublic class AddressDTO {\r\n    private String city;\r\n\r\n    private String street;\r\n\r\n    private String buildingNum;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/AddressDTO.java b/src/main/java/com/project/food_delivery/dtos/AddressDto.java
+rename from src/main/java/com/project/food_delivery/dtos/AddressDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/AddressDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/AddressDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/AddressDto.java	(date 1696338761717)
+@@ -7,7 +7,7 @@
+ @Getter
+ @Setter
+ @Component
+-public class AddressDTO {
++public class AddressDto {
+     private String city;
+ 
+     private String street;
+Index: src/main/java/com/project/food_delivery/services/AddressService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.AddressDTO;\r\n\r\npublic interface AddressService {\r\n    void addNewAddress(AddressDTO addressDTO);\r\n    void deleteAddressById(Integer id);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/AddressService.java b/src/main/java/com/project/food_delivery/services/AddressService.java
+--- a/src/main/java/com/project/food_delivery/services/AddressService.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/AddressService.java	(date 1696338761585)
+@@ -1,8 +1,8 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.dtos.AddressDTO;
++import com.project.food_delivery.dtos.AddressDto;
+ 
+ public interface AddressService {
+-    void addNewAddress(AddressDTO addressDTO);
++    void addNewAddress(AddressDto addressDTO);
+     void deleteAddressById(Integer id);
+ }
+Index: src/main/java/com/project/food_delivery/rest_controllers/PlaceCategoryController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.rest_controllers;\r\n\r\nimport com.project.food_delivery.dtos.PlaceCategoryDTO;\r\nimport com.project.food_delivery.services.PlaceCategoryService;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport java.util.List;\r\n\r\n@RestController\r\n@AllArgsConstructor\r\n@RequestMapping(\"/place-categories\")\r\npublic class PlaceCategoryController {\r\n    private final PlaceCategoryService placeCategoryService;\r\n\r\n    @GetMapping(\"\")\r\n    @ResponseStatus(HttpStatus.OK)\r\n    public List<PlaceCategoryDTO> getPlaceCategories(){\r\n        return placeCategoryService.getPlaceCategories();\r\n    }\r\n\r\n    @PostMapping(\"/{place-category}\")\r\n    @ResponseStatus(HttpStatus.CREATED)\r\n    public void addNewPlaceCategory(@PathVariable(name = \"place-category\") String placeCategory){\r\n        placeCategoryService.addPlaceCategory(placeCategory);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/rest_controllers/PlaceCategoryController.java b/src/main/java/com/project/food_delivery/rest_controllers/PlaceCategoryController.java
+--- a/src/main/java/com/project/food_delivery/rest_controllers/PlaceCategoryController.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/rest_controllers/PlaceCategoryController.java	(date 1696338235010)
+@@ -1,6 +1,6 @@
+ package com.project.food_delivery.rest_controllers;
+ 
+-import com.project.food_delivery.dtos.PlaceCategoryDTO;
++import com.project.food_delivery.dtos.PlaceCategoryDto;
+ import com.project.food_delivery.services.PlaceCategoryService;
+ import lombok.AllArgsConstructor;
+ import org.springframework.http.HttpStatus;
+@@ -15,7 +15,7 @@
+ 
+     @GetMapping("")
+     @ResponseStatus(HttpStatus.OK)
+-    public List<PlaceCategoryDTO> getPlaceCategories(){
++    public List<PlaceCategoryDto> getPlaceCategories(){
+         return placeCategoryService.getPlaceCategories();
+     }
+ 
+Index: src/main/java/com/project/food_delivery/rest_controllers/ProductController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.rest_controllers;\r\n\r\nimport com.project.food_delivery.RequestBodies.ProductData;\r\nimport com.project.food_delivery.dtos.ProductJoinCompanyDTO;\r\nimport com.project.food_delivery.services.ProductJoinCompanyService;\r\nimport com.project.food_delivery.services.ProductService;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport java.util.List;\r\n\r\n@RestController\r\n@AllArgsConstructor\r\n@RequestMapping(\"/products\")\r\npublic class ProductController {\r\n    private final ProductService productService;\r\n    private final ProductJoinCompanyService productJoinCompanyService;\r\n    @GetMapping(\"\")\r\n    @ResponseStatus(HttpStatus.OK)\r\n    public List<ProductJoinCompanyDTO> getProductsByProductCategory(@RequestParam(name = \"category\") String category){\r\n        return productJoinCompanyService.findProductInformationByProductCategory(category);\r\n    }\r\n\r\n    @PostMapping(\"\")\r\n    @ResponseStatus(HttpStatus.CREATED)\r\n    public void addProduct(@RequestBody ProductData productData){\r\n        productService.addProduct(productData);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/rest_controllers/ProductController.java b/src/main/java/com/project/food_delivery/rest_controllers/ProductController.java
+--- a/src/main/java/com/project/food_delivery/rest_controllers/ProductController.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/rest_controllers/ProductController.java	(date 1696338235038)
+@@ -1,7 +1,9 @@
+ package com.project.food_delivery.rest_controllers;
+ 
+-import com.project.food_delivery.RequestBodies.ProductData;
+-import com.project.food_delivery.dtos.ProductJoinCompanyDTO;
++import com.project.food_delivery.dtos.ProductDataDto;
++import com.project.food_delivery.dtos.ProductJoinCompanyDto;
++import com.project.food_delivery.models.ProductMetadata;
++import com.project.food_delivery.repositories.ProductRepository;
+ import com.project.food_delivery.services.ProductJoinCompanyService;
+ import com.project.food_delivery.services.ProductService;
+ import lombok.AllArgsConstructor;
+@@ -15,15 +17,23 @@
+ public class ProductController {
+     private final ProductService productService;
+     private final ProductJoinCompanyService productJoinCompanyService;
++    private final ProductRepository productRepository;
+     @GetMapping("")
+     @ResponseStatus(HttpStatus.OK)
+-    public List<ProductJoinCompanyDTO> getProductsByProductCategory(@RequestParam(name = "category") String category){
++    public List<ProductJoinCompanyDto> getProductsByProductCategory(@RequestParam(name = "category") String category){
+         return productJoinCompanyService.findProductInformationByProductCategory(category);
+     }
+ 
+     @PostMapping("")
+     @ResponseStatus(HttpStatus.CREATED)
+-    public void addProduct(@RequestBody ProductData productData){
++    public void addProduct(@RequestBody ProductDataDto productData){
+         productService.addProduct(productData);
+     }
++
++    @GetMapping("/pr")
++    @ResponseStatus(HttpStatus.OK)
++    public ProductMetadata getProduct(){
++        return productRepository.findAll().get(0);
++    }
++
+ }
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/AddressMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.AddressDTO;\r\nimport com.project.food_delivery.models.Address;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\")\r\npublic interface AddressMapper {\r\n    Address addressDTOToModel(AddressDTO addressDTO);\r\n    AddressDTO addressToDTO(Address address);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/AddressMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/AddressMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/AddressMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/AddressMapper.java	(date 1696338234849)
+@@ -1,12 +1,11 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.AddressDTO;
++import com.project.food_delivery.dtos.AddressDto;
+ import com.project.food_delivery.models.Address;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+ @Mapper(componentModel = "spring")
+ public interface AddressMapper {
+-    Address addressDTOToModel(AddressDTO addressDTO);
+-    AddressDTO addressToDTO(Address address);
++    Address addressDTOToModel(AddressDto addressDTO);
++    AddressDto addressToDTO(Address address);
+ }
+Index: src/main/java/com/project/food_delivery/rest_controllers/ProductCategoryController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.rest_controllers;\r\n\r\nimport com.project.food_delivery.RequestBodies.ProductCategoryAndDescription;\r\nimport com.project.food_delivery.dtos.ProductCategoryDTO;\r\nimport com.project.food_delivery.services.ProductCategoryService;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport java.util.List;\r\n\r\n@RestController\r\n@AllArgsConstructor\r\n@RequestMapping(\"/product-categories\")\r\npublic class ProductCategoryController {\r\n    private final ProductCategoryService productCategoryService;\r\n    @GetMapping(\"\")\r\n    @ResponseStatus(HttpStatus.OK)\r\n    public List<ProductCategoryDTO> getProductCategories(){\r\n        return productCategoryService.getProductCategories();\r\n    }\r\n\r\n    @PostMapping(\"\")\r\n    @ResponseStatus(HttpStatus.CREATED)\r\n    public void addProductCategory(@RequestBody ProductCategoryAndDescription productCategoryAndDescription){\r\n        productCategoryService.addProductCategory(productCategoryAndDescription);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/rest_controllers/ProductCategoryController.java b/src/main/java/com/project/food_delivery/rest_controllers/ProductCategoryController.java
+--- a/src/main/java/com/project/food_delivery/rest_controllers/ProductCategoryController.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/rest_controllers/ProductCategoryController.java	(date 1696338235027)
+@@ -1,7 +1,7 @@
+ package com.project.food_delivery.rest_controllers;
+ 
+-import com.project.food_delivery.RequestBodies.ProductCategoryAndDescription;
+-import com.project.food_delivery.dtos.ProductCategoryDTO;
++import com.project.food_delivery.dtos.ProductCategoryAndDescriptionDto;
++import com.project.food_delivery.dtos.ProductCategoryDto;
+ import com.project.food_delivery.services.ProductCategoryService;
+ import lombok.AllArgsConstructor;
+ import org.springframework.http.HttpStatus;
+@@ -15,13 +15,13 @@
+     private final ProductCategoryService productCategoryService;
+     @GetMapping("")
+     @ResponseStatus(HttpStatus.OK)
+-    public List<ProductCategoryDTO> getProductCategories(){
++    public List<ProductCategoryDto> getProductCategories(){
+         return productCategoryService.getProductCategories();
+     }
+ 
+     @PostMapping("")
+     @ResponseStatus(HttpStatus.CREATED)
+-    public void addProductCategory(@RequestBody ProductCategoryAndDescription productCategoryAndDescription){
++    public void addProductCategory(@RequestBody ProductCategoryAndDescriptionDto productCategoryAndDescription){
+         productCategoryService.addProductCategory(productCategoryAndDescription);
+     }
+ }
+Index: src/main/java/com/project/food_delivery/services/UserServiceImplements.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.models.User;\r\nimport com.project.food_delivery.repositories.UserRepository;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.stereotype.Service;\r\n\r\n@Service\r\n@AllArgsConstructor\r\npublic class UserServiceImplements implements UserService{\r\n    private final UserRepository userRepository;\r\n    @Override\r\n    public User getUserByUsername(String username) {\r\n        return userRepository.findByUsername(username).orElseThrow();\r\n    }\r\n\r\n    @Override\r\n    public void deleteUserAccount(String username) {\r\n        if (isUserExists(username)){\r\n            userRepository.deleteByUsername(username);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public boolean isUserExists(String username) {\r\n        return userRepository.findByUsername(username).isPresent();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/UserServiceImplements.java b/src/main/java/com/project/food_delivery/services/UserServiceImplements.java
+--- a/src/main/java/com/project/food_delivery/services/UserServiceImplements.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/UserServiceImplements.java	(date 1696338847992)
+@@ -1,23 +1,32 @@
+ package com.project.food_delivery.services;
+ 
++import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
+ import com.project.food_delivery.models.User;
+ import com.project.food_delivery.repositories.UserRepository;
+ import lombok.AllArgsConstructor;
+ import org.springframework.stereotype.Service;
+ 
++import java.util.Optional;
++
+ @Service
+ @AllArgsConstructor
+ public class UserServiceImplements implements UserService{
+     private final UserRepository userRepository;
+     @Override
+     public User getUserByUsername(String username) {
+-        return userRepository.findByUsername(username).orElseThrow();
++        Optional<User> user = userRepository.findByUsername(username);
++        if (user.isEmpty()){
++            throw new ApiRequestExceptionNotFound("User is not found");
++        }
++        return user.get();
+     }
+ 
+     @Override
+     public void deleteUserAccount(String username) {
+         if (isUserExists(username)){
+             userRepository.deleteByUsername(username);
++        }else {
++            throw new ApiRequestExceptionNotFound("User is not found");
+         }
+     }
+ 
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/PlaceMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.PlaceCategoryDTO;\r\nimport com.project.food_delivery.dtos.PlaceDTO;\r\nimport com.project.food_delivery.models.Place;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\", uses = PlaceCategoryDTO.class)\r\npublic interface PlaceMapper {\r\n    PlaceDTO placeToDTO(Place place);\r\n    Place placeDTOToModel(PlaceDTO placeDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceMapper.java	(date 1696338234882)
+@@ -1,13 +1,12 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.PlaceCategoryDTO;
+-import com.project.food_delivery.dtos.PlaceDTO;
++import com.project.food_delivery.dtos.PlaceCategoryDto;
++import com.project.food_delivery.dtos.PlaceDto;
+ import com.project.food_delivery.models.Place;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+-@Mapper(componentModel = "spring", uses = PlaceCategoryDTO.class)
++@Mapper(componentModel = "spring", uses = PlaceCategoryDto.class)
+ public interface PlaceMapper {
+-    PlaceDTO placeToDTO(Place place);
+-    Place placeDTOToModel(PlaceDTO placeDTO);
++    PlaceDto placeToDTO(Place place);
++    Place placeDTOToModel(PlaceDto placeDTO);
+ }
+Index: src/main/java/com/project/food_delivery/services/ProductService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.RequestBodies.ProductData;\r\nimport com.project.food_delivery.models.ProductMetadata;\r\n\r\nimport java.util.List;\r\n\r\npublic interface ProductService {\r\n\r\n    void addProduct(ProductData productData);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/ProductService.java b/src/main/java/com/project/food_delivery/services/ProductService.java
+--- a/src/main/java/com/project/food_delivery/services/ProductService.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/ProductService.java	(date 1696338838246)
+@@ -1,11 +1,8 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.RequestBodies.ProductData;
+-import com.project.food_delivery.models.ProductMetadata;
+-
+-import java.util.List;
++import com.project.food_delivery.dtos.ProductDataDto;
+ 
+ public interface ProductService {
+ 
+-    void addProduct(ProductData productData);
++    void addProduct(ProductDataDto productData);
+ }
+Index: src/main/java/com/project/food_delivery/dtos/PlaceDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\nimport org.springframework.stereotype.Component;\r\n\r\n@Setter\r\n@Getter\r\n@Component\r\npublic class PlaceDTO {\r\n    private String name;\r\n    private PlaceCategoryDTO placeCategory;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/PlaceDTO.java b/src/main/java/com/project/food_delivery/dtos/PlaceDto.java
+rename from src/main/java/com/project/food_delivery/dtos/PlaceDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/PlaceDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/PlaceDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/PlaceDto.java	(date 1696338761677)
+@@ -7,7 +7,7 @@
+ @Setter
+ @Getter
+ @Component
+-public class PlaceDTO {
++public class PlaceDto {
+     private String name;
+-    private PlaceCategoryDTO placeCategory;
++    private PlaceCategoryDto placeCategory;
+ }
+Index: src/main/java/com/project/food_delivery/services/OrderServiceImplements.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.OrderDto;\r\nimport com.project.food_delivery.mapper_interfaces.OrderMapper;\r\nimport com.project.food_delivery.models.Basket;\r\nimport com.project.food_delivery.models.Order;\r\nimport com.project.food_delivery.models.Status;\r\nimport com.project.food_delivery.models.User;\r\nimport com.project.food_delivery.repositories.OrderRepository;\r\nimport lombok.AllArgsConstructor;\r\nimport org.springframework.stereotype.Service;\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\n@Service\r\n@AllArgsConstructor\r\npublic class OrderServiceImplements implements OrderService{\r\n    private final OrderRepository orderRepository;\r\n    private final UserServiceImplements userServiceImplements;\r\n    private final OrderMapper orderMapper;\r\n    @Override\r\n    public List<OrderDto> getListOfOrdersByUsername(String username) {\r\n        User user = userServiceImplements.getUserByUsername(username);\r\n        if (orderRepository.findOrdersByUser(user).isEmpty()){\r\n            //Will be handler exception\r\n        }\r\n        return orderRepository.findOrdersByUser(user).stream().map(orderMapper::orderToDto).toList();\r\n    }\r\n\r\n    @Override\r\n    public void buildNewOrderFromBasket(Basket basket) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public String changeOrderStatus(String status, String orderId) {\r\n        Integer id = Integer.parseInt(orderId);\r\n        List<Status> stringStatuses = Arrays.stream(Status.values()).toList();\r\n        if (stringStatuses.contains(Status.valueOf(status.toUpperCase())) && orderRepository.findById(id).isPresent()){\r\n            Order order = orderRepository.findById(id).get();\r\n            order.setStatus(Status.valueOf(status.toUpperCase()));\r\n            orderRepository.save(order);\r\n            return orderRepository.findById(id).get().getStatus().toString();\r\n        }else {\r\n            //Will be handler exception\r\n        }\r\n        return orderRepository.findById(id).get().getStatus().toString();//will be deleted\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/OrderServiceImplements.java b/src/main/java/com/project/food_delivery/services/OrderServiceImplements.java
+--- a/src/main/java/com/project/food_delivery/services/OrderServiceImplements.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/OrderServiceImplements.java	(date 1696338809911)
+@@ -1,6 +1,7 @@
+ package com.project.food_delivery.services;
+ 
+ import com.project.food_delivery.dtos.OrderDto;
++import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
+ import com.project.food_delivery.mapper_interfaces.OrderMapper;
+ import com.project.food_delivery.models.Basket;
+ import com.project.food_delivery.models.Order;
+@@ -22,7 +23,7 @@
+     public List<OrderDto> getListOfOrdersByUsername(String username) {
+         User user = userServiceImplements.getUserByUsername(username);
+         if (orderRepository.findOrdersByUser(user).isEmpty()){
+-            //Will be handler exception
++            throw new ApiRequestExceptionNotFound("You don't have orders");
+         }
+         return orderRepository.findOrdersByUser(user).stream().map(orderMapper::orderToDto).toList();
+     }
+@@ -42,8 +43,7 @@
+             orderRepository.save(order);
+             return orderRepository.findById(id).get().getStatus().toString();
+         }else {
+-            //Will be handler exception
++            throw new ApiRequestExceptionNotFound("This order is not found or you wrote not right status (Please check it)");
+         }
+-        return orderRepository.findById(id).get().getStatus().toString();//will be deleted
+     }
+ }
+Index: src/main/java/com/project/food_delivery/dtos/PlaceCategoryDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.dtos;\r\n\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Setter\r\n@Getter\r\npublic class PlaceCategoryDTO {\r\n    private String placeCategory;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/dtos/PlaceCategoryDTO.java b/src/main/java/com/project/food_delivery/dtos/PlaceCategoryDto.java
+rename from src/main/java/com/project/food_delivery/dtos/PlaceCategoryDTO.java
+rename to src/main/java/com/project/food_delivery/dtos/PlaceCategoryDto.java
+--- a/src/main/java/com/project/food_delivery/dtos/PlaceCategoryDTO.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/dtos/PlaceCategoryDto.java	(date 1696338761604)
+@@ -5,6 +5,6 @@
+ 
+ @Setter
+ @Getter
+-public class PlaceCategoryDTO {
++public class PlaceCategoryDto {
+     private String placeCategory;
+ }
+Index: src/main/java/com/project/food_delivery/services/PlaceCategoryService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.services;\r\n\r\nimport com.project.food_delivery.dtos.PlaceCategoryDTO;\r\n\r\nimport java.util.List;\r\n\r\npublic interface PlaceCategoryService {\r\n    List<PlaceCategoryDTO> getPlaceCategories();\r\n\r\n    void addPlaceCategory(String placeCategory);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/services/PlaceCategoryService.java b/src/main/java/com/project/food_delivery/services/PlaceCategoryService.java
+--- a/src/main/java/com/project/food_delivery/services/PlaceCategoryService.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/services/PlaceCategoryService.java	(date 1696338761565)
+@@ -1,11 +1,11 @@
+ package com.project.food_delivery.services;
+ 
+-import com.project.food_delivery.dtos.PlaceCategoryDTO;
++import com.project.food_delivery.dtos.PlaceCategoryDto;
+ 
+ import java.util.List;
+ 
+ public interface PlaceCategoryService {
+-    List<PlaceCategoryDTO> getPlaceCategories();
++    List<PlaceCategoryDto> getPlaceCategories();
+ 
+     void addPlaceCategory(String placeCategory);
+ }
+Index: src/main/java/com/project/food_delivery/mapper_interfaces/PlaceCategoryMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.project.food_delivery.mapper_interfaces;\r\n\r\nimport com.project.food_delivery.dtos.PlaceCategoryDTO;\r\nimport com.project.food_delivery.models.PlaceCategory;\r\nimport org.mapstruct.Mapper;\r\nimport org.mapstruct.factory.Mappers;\r\n\r\n@Mapper(componentModel = \"spring\")\r\npublic interface PlaceCategoryMapper {\r\n    PlaceCategoryDTO placeCategoryToPlaceCategoryDTO(PlaceCategory placeCategory);\r\n    PlaceCategory placeCategoryToModel(PlaceCategoryDTO placeCategoryDTO);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceCategoryMapper.java b/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceCategoryMapper.java
+--- a/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceCategoryMapper.java	(revision 11ab8f77a25d70384418e70d48598d7a4922d380)
++++ b/src/main/java/com/project/food_delivery/mapper_interfaces/PlaceCategoryMapper.java	(date 1696338234865)
+@@ -1,12 +1,11 @@
+ package com.project.food_delivery.mapper_interfaces;
+ 
+-import com.project.food_delivery.dtos.PlaceCategoryDTO;
++import com.project.food_delivery.dtos.PlaceCategoryDto;
+ import com.project.food_delivery.models.PlaceCategory;
+ import org.mapstruct.Mapper;
+-import org.mapstruct.factory.Mappers;
+ 
+ @Mapper(componentModel = "spring")
+ public interface PlaceCategoryMapper {
+-    PlaceCategoryDTO placeCategoryToPlaceCategoryDTO(PlaceCategory placeCategory);
+-    PlaceCategory placeCategoryToModel(PlaceCategoryDTO placeCategoryDTO);
++    PlaceCategoryDto placeCategoryToPlaceCategoryDTO(PlaceCategory placeCategory);
++    PlaceCategory placeCategoryToModel(PlaceCategoryDto placeCategoryDTO);
+ }
