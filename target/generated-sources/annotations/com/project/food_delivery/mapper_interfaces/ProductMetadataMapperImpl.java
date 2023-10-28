@@ -1,11 +1,13 @@
 package com.project.food_delivery.mapper_interfaces;
 
 import com.project.food_delivery.dtos.CompanyDtoRequest;
+import com.project.food_delivery.dtos.ProductCategoryDescriptionDto;
 import com.project.food_delivery.dtos.ProductCategoryDto;
 import com.project.food_delivery.dtos.ProductCharacteristicDto;
 import com.project.food_delivery.dtos.ProductMetadataDto;
 import com.project.food_delivery.models.Company;
 import com.project.food_delivery.models.ProductCategory;
+import com.project.food_delivery.models.ProductCategoryDescription;
 import com.project.food_delivery.models.ProductCharacteristic;
 import com.project.food_delivery.models.ProductMetadata;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-10-23T11:45:01+0300",
+    date = "2023-10-28T11:52:30+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 20 (Oracle Corporation)"
 )
 @Component
@@ -37,6 +39,18 @@ public class ProductMetadataMapperImpl implements ProductMetadataMapper {
         return productMetadataDto;
     }
 
+    protected ProductCategoryDescriptionDto productCategoryDescriptionToProductCategoryDescriptionDto(ProductCategoryDescription productCategoryDescription) {
+        if ( productCategoryDescription == null ) {
+            return null;
+        }
+
+        ProductCategoryDescriptionDto productCategoryDescriptionDto = new ProductCategoryDescriptionDto();
+
+        productCategoryDescriptionDto.setCategoryDescription( productCategoryDescription.getCategoryDescription() );
+
+        return productCategoryDescriptionDto;
+    }
+
     protected ProductCategoryDto productCategoryToProductCategoryDto(ProductCategory productCategory) {
         if ( productCategory == null ) {
             return null;
@@ -45,7 +59,7 @@ public class ProductMetadataMapperImpl implements ProductMetadataMapper {
         ProductCategoryDto productCategoryDto = new ProductCategoryDto();
 
         productCategoryDto.setProductCategory( productCategory.getProductCategory() );
-        productCategoryDto.setProductCategoryDescription( productCategory.getProductCategoryDescription() );
+        productCategoryDto.setProductCategoryDescription( productCategoryDescriptionToProductCategoryDescriptionDto( productCategory.getProductCategoryDescription() ) );
 
         return productCategoryDto;
     }

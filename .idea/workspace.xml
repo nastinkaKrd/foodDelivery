@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="294f0d61-c0d9-42ac-9a83-867d617aee6f" name="Changes" comment="Change readme file" />
+    <list default="true" id="294f0d61-c0d9-42ac-9a83-867d617aee6f" name="Changes" comment="Merge branch AddedMVCFiles to master">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_09_2023_10_04__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_09_2023_10_04__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/dtos/ProductCategoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/dtos/ProductCategoryDto.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="addedMVCFiles" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,7 +59,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "AddRedisCaches",
     "last_opened_file_path": "D:/робочі проекти/git clone/new/Library_Web-Application",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -120,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694764064783</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge branch AddedMVCFiles to master">
+      <option name="closed" value="true" />
+      <created>1698482752798</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698482752798</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +142,7 @@
     <MESSAGE value="Starting project" />
     <MESSAGE value="Start adding mvc files" />
     <MESSAGE value="Change readme file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change readme file" />
+    <MESSAGE value="Merge branch AddedMVCFiles to master" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch AddedMVCFiles to master" />
   </component>
 </project>
