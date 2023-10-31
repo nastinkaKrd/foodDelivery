@@ -1,14 +1,5 @@
 HELP.md
-target/classes/com/project/food_delivery/config
-target/classes/com/project/food_delivery/dtos
-target/classes/com/project/food_delivery/mapper_interfaces
-target/classes/com/project/food_delivery/repositories
-target/classes/com/project/food_delivery/rest_controllers
-target/classes/com/project/food_delivery/services
-target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces
-target/generated-test-sources
-target/maven-status/maven-compiler-plugin/compile/default-compile
-target/test-classes
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -23,7 +14,7 @@ target/test-classes
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
