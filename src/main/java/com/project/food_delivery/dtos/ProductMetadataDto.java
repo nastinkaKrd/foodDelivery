@@ -4,9 +4,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ProductMetadataDto {
+public class ProductMetadataDto{
     private String name;
     private ProductCategoryDto productCategory;
     private ProductCharacteristicDto productCharacteristic;
     private List<CompanyDtoRequest> companies;
+    private PlaceDto place;
 }

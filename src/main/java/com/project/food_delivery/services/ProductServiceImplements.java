@@ -2,15 +2,22 @@ package com.project.food_delivery.services;
 
 import com.project.food_delivery.dtos.CompanyDtoRequest;
 import com.project.food_delivery.dtos.ProductDataDto;
+import com.project.food_delivery.dtos.ProductMemoryValueData;
 import com.project.food_delivery.dtos.ProductMetadataDto;
 import com.project.food_delivery.exceptions.ApiRequestExceptionAlreadyReported;
 import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
 import com.project.food_delivery.mapper_interfaces.ProductMetadataMapper;
-import com.project.food_delivery.models.*;
+import com.project.food_delivery.models.Company;
+import com.project.food_delivery.models.Place;
+import com.project.food_delivery.models.ProductCategory;
+import com.project.food_delivery.models.ProductCharacteristic;
+import com.project.food_delivery.models.ProductMetadata;
+import com.project.food_delivery.repositories.ProductRedisRepository;
 import com.project.food_delivery.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +32,38 @@ public class ProductServiceImplements implements ProductService{
     private final ProductCategoryService productCategoryService;
     private final PlaceService placeService;
     private final ProductMetadataSpecificationFoundingService productMetadataSpecificationFoundingService;
+    private final ProductRedisRepository productRedisRepository;
+
+    @Override
+    public void saveProductInMemory(ProductMetadataDto productMetadata) {
+        productRedisRepository.save(productMetadata);
+    }
+
+    @Override
+    public List<ProductMemoryValueData> getAllProducts() {
+        return productRedisRepository.findAll();
+    }
+
+    @Override
+    public void addOneMoreProduct(ProductMetadataDto productMetadata) {
+        productRedisRepository.addOneMoreProduct(productMetadata);
+    }
+
+    @Override
+    public void deleteOneProduct(ProductMetadataDto productMetadata) {
+        productRedisRepository.deleteOneProduct(productMetadata);
+    }
+
+    @Override
+    public ProductMemoryValueData getProductByKey(ProductMetadataDto productMetadataDto) {
+        return productRedisRepository.findByKey(productMetadataDto).orElseThrow(
+                () -> new ApiRequestExceptionNotFound("Product is not found"));
+    }
+
+    @Override
+    public void deleteProductFromMemory(ProductMetadataDto productMetadataDto) {
+        productRedisRepository.deleteProduct(productMetadataDto);
+    }
 
     @Override
     public List<ProductMetadataDto> findProductInformationByProductCategory(String category) {
