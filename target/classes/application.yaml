@@ -1,9 +1,0 @@
-server:
-  port: 8082
-spring:
-  jpa:
-    hibernate.ddl-auto: validate
-  datasource:
-    url: ${URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
