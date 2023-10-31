@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="64758a0d-2dd9-4ae8-9cb0-8a784d789186" name="Changes" comment="update master">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/dtos/ProductMemoryKeyData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/dtos/ProductMemoryValueData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/repositories/ProductRedisRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/config/RedisConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/dtos/ProductMemoryKeyData$ProductMemoryKeyDataBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/dtos/ProductMemoryKeyData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/dtos/ProductMemoryValueData$ProductMemoryValueDataBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/dtos/ProductMemoryValueData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/dtos/ProductMetadataDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/mapper_interfaces/ProductMetadataMapperImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/repositories/ProductRedisRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/rest_controllers/ProductController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/services/ProductService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/project/food_delivery/services/ProductServiceImplements.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/AddressMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/CompanyMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/OrderMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/PlaceCategoryMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/PlaceMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/ProductCategoryMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/ProductCharacteristicMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/ProductMetadataMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/annotations/com/project/food_delivery/mapper_interfaces/UserMapperImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/dtos/ProductMetadataDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/dtos/ProductMetadataDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/rest_controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/rest_controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/services/ProductServiceImplements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/food_delivery/services/ProductServiceImplements.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": -1
+}]]></component>
+  <component name="ProjectId" id="2XXDPHB6kY5Xi4qXezbiOVDIqAu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Cherry-picking in AddRedisCach",
+    "last_opened_file_path": "D:/робочі проекти/foodDelivery/food_delivery",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\робочі проекти\foodDelivery\food_delivery" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="FoodDeliveryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="URL" value="$URL$" />
+        <env name="USERNAME" value="$USERNAME$" />
+        <env name="PASSWORD" value="$PASSWORD$" />
+      </envs>
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="food_delivery" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.food_delivery.FoodDeliveryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64758a0d-2dd9-4ae8-9cb0-8a784d789186" name="Changes" comment="" />
+      <created>1698766507130</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698766507130</updated>
+      <workItem from="1698766511300" duration="911000" />
+    </task>
+    <task id="LOCAL-00001" summary="update master">
+      <option name="closed" value="true" />
+      <created>1698767026175</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698767026175</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update master">
+      <option name="closed" value="true" />
+      <created>1698767142413</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698767142413</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update master" />
+    <option name="LAST_COMMIT_MESSAGE" value="update master" />
+  </component>
+</project>
