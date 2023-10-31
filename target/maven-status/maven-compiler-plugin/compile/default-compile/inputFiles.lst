@@ -28,8 +28,10 @@ D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\proj
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\ProductServiceImplements.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\dtos\PlaceDataDto.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\exceptions\ApiRequestExceptionAlreadyReported.java
+D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\config\RedisConfig.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\rest_controllers\AuthenticationController.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\CompanyServiceImplements.java
+D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\repositories\ProductRedisRepository.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\dtos\AddressDto.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\ProductCategoryDescriptionServiceImplements.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\PlaceCategoryServiceImplements.java
@@ -37,6 +39,7 @@ D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\proj
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\UserService.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\dtos\PlaceDto.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\repositories\UserRepository.java
+D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\dtos\ProductMemoryValueData.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\models\ProductCategory.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\PlaceService.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\OrderService.java
@@ -48,6 +51,7 @@ D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\proj
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\UserServiceImplements.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\repositories\PlaceRepository.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\services\AddressServiceImplements.java
+D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\dtos\ProductMemoryKeyData.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\dtos\ProductCategoryAndDescriptionDto.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\mapper_interfaces\ProductMetadataMapper.java
 D:\робочі проекти\foodDelivery\food_delivery\src\main\java\com\project\food_delivery\repositories\OrderRepository.java

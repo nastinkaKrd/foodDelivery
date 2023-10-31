@@ -12,10 +12,13 @@ com\project\food_delivery\services\ProductCharacteristicServiceImplements.class
 com\project\food_delivery\dtos\PlaceDataDto.class
 com\project\food_delivery\models\WeightMeasurement.class
 com\project\food_delivery\dtos\CompanyDtoRequest.class
+com\project\food_delivery\dtos\ProductMemoryValueData$ProductMemoryValueDataBuilder.class
 com\project\food_delivery\services\ProductServiceImplements.class
 com\project\food_delivery\dtos\ProductCategoryDto.class
 com\project\food_delivery\mapper_interfaces\AddressMapper.class
+com\project\food_delivery\services\UserServiceImplements.class
 com\project\food_delivery\dtos\ProductCategoryAndDescriptionDto.class
+com\project\food_delivery\dtos\ProductMemoryKeyData$ProductMemoryKeyDataBuilder.class
 com\project\food_delivery\mapper_interfaces\UserMapper.class
 com\project\food_delivery\mapper_interfaces\PlaceMapper.class
 com\project\food_delivery\dtos\PlaceCategoryDto.class
@@ -25,6 +28,7 @@ com\project\food_delivery\dtos\ProductMetadataDto.class
 com\project\food_delivery\rest_controllers\PlaceCategoryController.class
 com\project\food_delivery\dtos\ProductCharacteristicDto.class
 com\project\food_delivery\services\ProductCategoryService.class
+com\project\food_delivery\dtos\ProductMemoryKeyData.class
 com\project\food_delivery\rest_controllers\ProductController.class
 com\project\food_delivery\repositories\ProductCategoryDescriptionRepository.class
 com\project\food_delivery\mapper_interfaces\ProductCharacteristicMapperImpl.class
@@ -38,6 +42,7 @@ com\project\food_delivery\services\PlaceServiceImplements.class
 com\project\food_delivery\models\ProductCategoryDescription.class
 com\project\food_delivery\mapper_interfaces\PlaceCategoryMapper.class
 com\project\food_delivery\mapper_interfaces\CompanyMapperImpl.class
+com\project\food_delivery\repositories\ProductRedisRepository.class
 com\project\food_delivery\mapper_interfaces\ProductCharacteristicMapper.class
 com\project\food_delivery\rest_controllers\ProductCategoryController.class
 com\project\food_delivery\mapper_interfaces\ProductCategoryMapper.class
@@ -45,6 +50,7 @@ com\project\food_delivery\models\Order.class
 com\project\food_delivery\repositories\ProductCharacteristicRepository.class
 com\project\food_delivery\mapper_interfaces\PlaceCategoryMapperImpl.class
 com\project\food_delivery\rest_controllers\UserController.class
+com\project\food_delivery\dtos\ProductMemoryValueData.class
 com\project\food_delivery\models\ProductCharacteristic.class
 com\project\food_delivery\services\ProductCharacteristicService.class
 com\project\food_delivery\services\AddressServiceImplements.class
