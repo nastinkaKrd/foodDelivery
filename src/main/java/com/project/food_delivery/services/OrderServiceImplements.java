@@ -68,8 +68,7 @@ public class OrderServiceImplements implements OrderService{
             }else {
                 price.updateAndGet(v -> v + productMemoryValueData1.getProductCharacteristic().getPrice());
             }
-            Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.findAndReturnProductMetadataSpecification(productMemoryValueData1.getName(), productMemoryValueData1.getProductCategory().getProductCategory(), productMemoryValueData1.getPlace().getName(), productMemoryValueData1.getProductCharacteristic().getPrice(),
-                    productMemoryValueData1.getProductCharacteristic().getWeight(), productMemoryValueData1.getProductCharacteristic().getAvailableAmount(), productMemoryValueData1.getProductCharacteristic().getWeightMeasurement());
+            Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecificationFromMemoryData(productMemoryValueData1);
             productMetadata.add(productRepository.findOne(specification).orElseThrow());
         });
         Order order = Order.builder()
@@ -82,4 +81,8 @@ public class OrderServiceImplements implements OrderService{
         orderRepository.save(order);
         productRedisRepository.deleteProductsFromMemory();
     }
+
+
 }
+
+

@@ -37,37 +37,37 @@ public class ProductController {
     }
 
 
-    @PostMapping("/redis")
+    @PostMapping("/save-in-memory")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveInMemory(@RequestBody ProductMetadataDto productMetadata){
         productService.saveProductInMemory(productMetadata);
     }
 
-    @GetMapping("/redis")
+    @GetMapping("/get-all-from-memory")
     @ResponseStatus(HttpStatus.OK)
     public List<ProductMemoryValueData> getAllProducts(){
         return productService.getAllProducts();
     }
 
-    @GetMapping("/redis/key")
+    @GetMapping("/get-product-from-memory")
     @ResponseStatus(HttpStatus.OK)
     public ProductMemoryValueData getProductByKey(@RequestBody ProductMetadataDto productMetadataDto){
         return productService.getProductByKey(productMetadataDto);
     }
 
-    @DeleteMapping("/redis")
+    @DeleteMapping("/delete-from-memory")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     private void deleteProduct(@RequestBody ProductMetadataDto productMetadataDto){
         productService.deleteProductFromMemory(productMetadataDto);
     }
 
-    @PutMapping("/redis/increment")
+    @PutMapping("/increase-product-amount")
     @ResponseStatus(HttpStatus.OK)
     private void addOneMoreProduct(@RequestBody ProductMetadataDto productMetadata){
         productService.addOneMoreProduct(productMetadata);
     }
 
-    @PutMapping("/redis/decrement")
+    @PutMapping("/decrease-product-amount")
     @ResponseStatus(HttpStatus.OK)
     private void deleteOneProduct(@RequestBody ProductMetadataDto productMetadata){
         productService.deleteOneProduct(productMetadata);

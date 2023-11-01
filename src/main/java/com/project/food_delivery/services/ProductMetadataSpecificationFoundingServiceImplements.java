@@ -1,7 +1,8 @@
 package com.project.food_delivery.services;
 
+import com.project.food_delivery.dtos.ProductDataDto;
+import com.project.food_delivery.dtos.ProductMemoryValueData;
 import com.project.food_delivery.models.ProductMetadata;
-import com.project.food_delivery.models.WeightMeasurement;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -11,35 +12,69 @@ import org.springframework.stereotype.Service;
 public class ProductMetadataSpecificationFoundingServiceImplements implements ProductMetadataSpecificationFoundingService{
     private final ProductMetadataSpecificationBuildingService productMetadataSpecificationBuildingService;
     @Override
-    public Specification<ProductMetadata> findAndReturnProductMetadataSpecification(String name, String category, String placeName, Double price, Double weight, Integer availableAmount, WeightMeasurement weightMeasurement) {
+    public Specification<ProductMetadata> returnProductSpecificationFromMemoryData(ProductMemoryValueData productMemoryValueData) {
         Specification<ProductMetadata> spec = Specification.where(null);
 
-        if (name != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByName(name));
+        if (productMemoryValueData.getName() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByName(productMemoryValueData.getName()));
         }
 
-        if (category != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByProductCategory(category));
+        if (productMemoryValueData.getProductCategory().getProductCategory() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByProductCategory(productMemoryValueData.getProductCategory().getProductCategory()));
         }
 
-        if (placeName != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByPlaceName(placeName));
+        if (productMemoryValueData.getPlace().getName() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByPlaceName(productMemoryValueData.getPlace().getName()));
         }
 
-        if (price != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByPrice(price));
+        if (productMemoryValueData.getProductCharacteristic().getPrice() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByPrice(productMemoryValueData.getProductCharacteristic().getPrice()));
         }
 
-        if (weight != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByWeight(weight));
+        if (productMemoryValueData.getProductCharacteristic().getWeight() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByWeight(productMemoryValueData.getProductCharacteristic().getWeight()));
         }
 
-        if (availableAmount != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByAvailableAmount(availableAmount));
+        if (productMemoryValueData.getProductCharacteristic().getAvailableAmount() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByAvailableAmount(productMemoryValueData.getProductCharacteristic().getAvailableAmount()));
         }
 
-        if (weightMeasurement != null) {
-            spec = spec.and(productMetadataSpecificationBuildingService.filterByWeightMeasurement(weightMeasurement));
+        if (productMemoryValueData.getProductCharacteristic().getWeightMeasurement() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByWeightMeasurement(productMemoryValueData.getProductCharacteristic().getWeightMeasurement()));
+        }
+        return spec;
+    }
+
+    @Override
+    public Specification<ProductMetadata> returnProductSpecificationFromRequestData(ProductDataDto productData) {
+        Specification<ProductMetadata> spec = Specification.where(null);
+
+        if (productData.getName() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByName(productData.getName()));
+        }
+
+        if (productData.getCategory() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByProductCategory(productData.getCategory()));
+        }
+
+        if (productData.getPlace() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByPlaceName(productData.getPlace()));
+        }
+
+        if (productData.getProductCharacteristic().getPrice() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByPrice(productData.getProductCharacteristic().getPrice()));
+        }
+
+        if (productData.getProductCharacteristic().getWeight() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByWeight(productData.getProductCharacteristic().getWeight()));
+        }
+
+        if (productData.getProductCharacteristic().getAvailableAmount() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByAvailableAmount(productData.getProductCharacteristic().getAvailableAmount()));
+        }
+
+        if (productData.getProductCharacteristic().getWeightMeasurement() != null) {
+            spec = spec.and(productMetadataSpecificationBuildingService.filterByWeightMeasurement(productData.getProductCharacteristic().getWeightMeasurement()));
         }
         return spec;
     }
