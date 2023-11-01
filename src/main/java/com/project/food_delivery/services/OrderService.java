@@ -6,4 +6,5 @@ import java.util.List;
 public interface OrderService {
     List<OrderDto> getOrders(String username);
     String changeOrderStatus(String status, String orderId);
+    void buildNewOrderFromBasket(String username, String payment);
 }

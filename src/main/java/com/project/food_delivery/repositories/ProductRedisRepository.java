@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -76,6 +77,9 @@ public class ProductRedisRepository {
                 });
     }
 
+    public void deleteProductsFromMemory(){
+        template.delete(Objects.requireNonNull(template.keys("*")));
+    }
     public List<ProductMemoryValueData> findAll() {
         List<Object> productMetadataDtoList = template.opsForHash().values(HASH_KEY);
         if (productMetadataDtoList.isEmpty()){

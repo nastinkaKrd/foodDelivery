@@ -22,9 +22,10 @@ public class OrderController {
         return orderService.getOrders(username);
     }
 
-    @PostMapping("/{username}")
-    public void buildNewOrderFromBasketByUsername(){
-
+    @PostMapping("/{username}/{payment}")
+    public void buildNewOrderFromBasket(@PathVariable(name = "username") String username,
+                                        @PathVariable(name = "payment") String payment){
+        orderService.buildNewOrderFromBasket(username, payment);
     }
 
 }
