@@ -76,7 +76,7 @@ public class ProductServiceImplements implements ProductService{
 
     @Override
     public void addProduct(ProductDataDto productData) {
-        Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecificationFromRequestData(productData);
+        Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecification(productMetadataMapper.convertRequestDataToFinding(productData));
         Optional<ProductMetadata> productMetadata = productRepository.findOne(specification);
         CompanyDtoRequest companyDtoRequest = new CompanyDtoRequest();
         companyDtoRequest.setName(productData.getCompany());
