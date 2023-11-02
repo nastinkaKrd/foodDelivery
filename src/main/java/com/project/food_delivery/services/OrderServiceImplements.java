@@ -4,7 +4,7 @@ import com.project.food_delivery.dtos.OrderDto;
 import com.project.food_delivery.dtos.ProductMemoryValueData;
 import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
 import com.project.food_delivery.mapper_interfaces.OrderMapper;
-import com.project.food_delivery.mapper_interfaces.ProductMetadataMapper;
+import com.project.food_delivery.mapper_interfaces.ProductDataInMemoryMapper;
 import com.project.food_delivery.models.Order;
 import com.project.food_delivery.models.Payment;
 import com.project.food_delivery.models.ProductMetadata;
@@ -31,7 +31,7 @@ public class OrderServiceImplements implements OrderService{
     private final ProductRedisRepository productRedisRepository;
     private final ProductMetadataSpecificationFoundingService productMetadataSpecificationFoundingService;
     private final ProductRepository productRepository;
-    private final ProductMetadataMapper productMetadataMapper;
+    private final ProductDataInMemoryMapper productDataInMemoryMapper;
 
     @Override
     public List<OrderDto> getOrders(String username) {
@@ -70,7 +70,7 @@ public class OrderServiceImplements implements OrderService{
             }else {
                 price.updateAndGet(v -> v + productMemoryValueData1.getProductCharacteristic().getPrice());
             }
-            Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecification(productMetadataMapper.convertProductFromMemoryToFinding(productMemoryValueData1));
+            Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecification(productDataInMemoryMapper.convertProductFromMemoryToFinding(productMemoryValueData1));
             productMetadata.add(productRepository.findOne(specification).orElseThrow());
         });
         Order order = Order.builder()

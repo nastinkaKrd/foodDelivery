@@ -7,6 +7,7 @@ import com.project.food_delivery.dtos.ProductMetadataDto;
 import com.project.food_delivery.exceptions.ApiRequestExceptionAlreadyReported;
 import com.project.food_delivery.exceptions.ApiRequestExceptionNotFound;
 import com.project.food_delivery.mapper_interfaces.ProductMetadataMapper;
+import com.project.food_delivery.mapper_interfaces.RequestProductDataMapper;
 import com.project.food_delivery.models.Company;
 import com.project.food_delivery.models.Place;
 import com.project.food_delivery.models.ProductCategory;
@@ -33,6 +34,7 @@ public class ProductServiceImplements implements ProductService{
     private final PlaceService placeService;
     private final ProductMetadataSpecificationFoundingService productMetadataSpecificationFoundingService;
     private final ProductRedisRepository productRedisRepository;
+    private final RequestProductDataMapper requestProductDataMapper;
 
     @Override
     public void saveProductInMemory(ProductMetadataDto productMetadata) {
@@ -76,7 +78,7 @@ public class ProductServiceImplements implements ProductService{
 
     @Override
     public void addProduct(ProductDataDto productData) {
-        Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecification(productMetadataMapper.convertRequestDataToFinding(productData));
+        Specification<ProductMetadata> specification = productMetadataSpecificationFoundingService.returnProductSpecification(requestProductDataMapper.convertRequestDataToFinding(productData));
         Optional<ProductMetadata> productMetadata = productRepository.findOne(specification);
         CompanyDtoRequest companyDtoRequest = new CompanyDtoRequest();
         companyDtoRequest.setName(productData.getCompany());
