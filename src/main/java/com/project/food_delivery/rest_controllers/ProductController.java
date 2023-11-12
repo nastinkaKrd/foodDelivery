@@ -4,6 +4,14 @@ import com.project.food_delivery.dtos.ProductDataDto;
 import com.project.food_delivery.dtos.ProductMemoryValueData;
 import com.project.food_delivery.dtos.ProductMetadataDto;
 import com.project.food_delivery.services.ProductService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,55 +29,123 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/products")
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Product controller",
+                version = "1.0",
+                description = "Controller that processes product data"
+        )
+)
 public class ProductController {
     private final ProductService productService;
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductMetadataDto> getProductsByProductCategory(@RequestParam(name = "category") String category){
+    @Operation(summary = "Get products by product category")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found products",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductMetadataDto.class))}),
+            @ApiResponse(responseCode = "404", description = "Products are not found", content = @Content(mediaType = "text/plain"))
+    })
+    public List<ProductMetadataDto> getProductsByProductCategory(@Parameter(description = "Product category", example = "fruit") @RequestParam(name = "category") String category){
         return productService.findProductInformationByProductCategory(category);
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addProduct(@RequestBody ProductDataDto productData){
+    @Operation(summary = "Add product into database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Product is added", content = @Content(mediaType = "text/plain")),
+            @ApiResponse(responseCode = "208", description = "Product already exists", content = @Content(mediaType = "text/plain"))
+    })
+    public void addProduct(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductDataDto.class)
+    )) @RequestBody ProductDataDto productData){
         productService.addProduct(productData);
     }
 
 
     @PostMapping("/save-in-memory")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveInMemory(@RequestBody ProductMetadataDto productMetadata){
+    @Operation(summary = "Add product into memory")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Product is added", content = @Content(mediaType = "text/plain"))
+    })
+    public void saveInMemory(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductMetadataDto.class)
+    )) @RequestBody ProductMetadataDto productMetadata){
         productService.saveProductInMemory(productMetadata);
     }
 
     @GetMapping("/get-all-from-memory")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get products from memory")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found products",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductMemoryValueData.class))}),
+            @ApiResponse(responseCode = "404", description = "Products are not found", content = @Content(mediaType = "text/plain"))
+    })
     public List<ProductMemoryValueData> getAllProducts(){
         return productService.getAllProducts();
     }
 
     @GetMapping("/get-product-from-memory")
     @ResponseStatus(HttpStatus.OK)
-    public ProductMemoryValueData getProductByKey(@RequestBody ProductMetadataDto productMetadataDto){
+    @Operation(summary = "Get product from memory")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found products",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ProductMemoryValueData.class))}),
+            @ApiResponse(responseCode = "404", description = "Product is not found", content = @Content(mediaType = "text/plain"))
+    })
+    public ProductMemoryValueData getProductByKey(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductMetadataDto.class)
+    ))@RequestBody ProductMetadataDto productMetadataDto){
         return productService.getProductByKey(productMetadataDto);
     }
 
     @DeleteMapping("/delete-from-memory")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    private void deleteProduct(@RequestBody ProductMetadataDto productMetadataDto){
+    @Operation(summary = "Delete product from memory")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Product is deleted", content = @Content(mediaType = "text/plain")),
+            @ApiResponse(responseCode = "404", description = "Product is not found", content = @Content(mediaType = "text/plain"))
+    })
+    private void deleteProduct(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductMetadataDto.class)
+    ))@RequestBody ProductMetadataDto productMetadataDto){
         productService.deleteProductFromMemory(productMetadataDto);
     }
 
     @PutMapping("/increase-product-amount")
     @ResponseStatus(HttpStatus.OK)
-    private void addOneMoreProduct(@RequestBody ProductMetadataDto productMetadata){
+    @Operation(summary = "Add one more product into basket")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Product is added", content = @Content(mediaType = "text/plain"))
+    })
+    private void addOneMoreProduct(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductMetadataDto.class)
+    ))@RequestBody ProductMetadataDto productMetadata){
         productService.addOneMoreProduct(productMetadata);
     }
 
-    @PutMapping("/decrease-product-amount")
+    @PutMapping("/Delete one pc of product from basket")
     @ResponseStatus(HttpStatus.OK)
-    private void deleteOneProduct(@RequestBody ProductMetadataDto productMetadata){
+    @Operation(summary = "Product is deleted")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Product is deleted", content = @Content(mediaType = "text/plain"))
+    })
+    private void deleteOneProduct(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductMetadataDto.class)
+    ))@RequestBody ProductMetadataDto productMetadata){
         productService.deleteOneProduct(productMetadata);
     }
 
