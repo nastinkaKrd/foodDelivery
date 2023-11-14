@@ -8,7 +8,7 @@ public class AddressDto {
     @Schema(description = "Id", example = "0")
     private Integer id;
 
-    @Schema(description = "Name", example = "Ivano-Frankivsk")
+    @Schema(description = "City name", example = "Ivano-Frankivsk")
     private String city;
 
     @Schema(description = "Street", example = "Ivan Mykolaychuk street")

@@ -3,6 +3,7 @@ package com.project.food_delivery.rest_controllers;
 import com.project.food_delivery.dtos.AddressDto;
 import com.project.food_delivery.dtos.UserInformationDto;
 import com.project.food_delivery.dtos.UsernameAndAddressDto;
+import com.project.food_delivery.exceptions.ErrorResponse;
 import com.project.food_delivery.services.UserService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,10 +45,11 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "Found user information",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserInformationDto.class))}),
-            @ApiResponse(responseCode = "404", description = "User is not found", content = @Content(mediaType = "text/plain"))
+            @ApiResponse(responseCode = "404", description = "Information is not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse .class))})
     })
-    public UserInformationDto getUserInformationByUsername(@Parameter(description = "Username", example = "nastinka_krd") @PathVariable(name = "username") String username){
-        return userService.findUserInformationByUsername(username);
+    public ResponseEntity<UserInformationDto> getUserInformationByUsername(@Parameter(description = "Username", example = "nastinka_krd") @PathVariable(name = "username") String username){
+        return ResponseEntity.ok(userService.findUserInformationByUsername(username));
     }
 
     @PutMapping("/{username}")
@@ -56,23 +59,26 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "User address is changed",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = AddressDto.class))}),
-            @ApiResponse(responseCode = "404", description = "User is not found", content = @Content(mediaType = "text/plain")),
-            @ApiResponse(responseCode = "404", description = "Address is not found", content = @Content(mediaType = "text/plain"))
+            @ApiResponse(responseCode = "404", description = "User is not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse .class))}),
+            @ApiResponse(responseCode = "404", description = "Address is not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse .class))})
     })
-    public AddressDto changeUserAddressByUsername(@Parameter(description = "Username", example = "nastinka_krd") @PathVariable(name = "username") String username,
+    public ResponseEntity<AddressDto> changeUserAddressByUsername(@Parameter(description = "Username", example = "nastinka_krd") @PathVariable(name = "username") String username,
                                                   @Parameter(required = true, content = @Content(
                                                           mediaType = "application/json",
                                                           schema = @Schema(implementation = AddressDto.class)
                                                   )) @RequestBody AddressDto addressDto){
-        return userService.changeUserAddressByUsername(username, addressDto);
+        return ResponseEntity.ok(userService.changeUserAddressByUsername(username, addressDto));
     }
 
     @DeleteMapping("/address")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete user address")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "User address is deleted", content = @Content(mediaType = "text/plain")),
-            @ApiResponse(responseCode = "404", description = "User is not found", content = @Content(mediaType = "text/plain"))
+            @ApiResponse(responseCode = "204", description = "User address is deleted"),
+            @ApiResponse(responseCode = "404", description = "User is not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse .class))})
     })
     public void deleteUserAddressByUsername(@Parameter(required = true, content = @Content(
             mediaType = "application/json",
@@ -85,8 +91,9 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete user account")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "User account is deleted", content = @Content(mediaType = "text/plain")),
-            @ApiResponse(responseCode = "404", description = "User is not found", content = @Content(mediaType = "text/plain"))
+            @ApiResponse(responseCode = "204", description = "User account is deleted"),
+            @ApiResponse(responseCode = "404", description = "User is not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse .class))})
     })
     public void deleteUserAccount(@Parameter(description = "Username", example = "nastinka_krd") @PathVariable(name = "username") String username){
         userService.deleteUserAccount(username);
@@ -96,8 +103,9 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create user address")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "User address is created", content = @Content(mediaType = "text/plain")),
-            @ApiResponse(responseCode = "404", description = "User is not found", content = @Content(mediaType = "text/plain"))
+            @ApiResponse(responseCode = "201", description = "User address is created"),
+            @ApiResponse(responseCode = "404", description = "User is not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse .class))})
     })
     public void addUserAddressByUsername(@Parameter(description = "Username", example = "nastinka_krd") @PathVariable(name = "username") String username,
                                          @Parameter(required = true, content = @Content(

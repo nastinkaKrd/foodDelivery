@@ -15,6 +15,6 @@ public class PlaceDataDto {
             schema = @Schema(implementation = AddressDto.class)))
     AddressDto address;
 
-    @Schema(description = "placeCategory", example = "Supermarket")
+    @Schema(description = "Place category", example = "Supermarket")
     String placeCategory;
 }

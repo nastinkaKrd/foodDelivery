@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class CompanyDtoRequest {
-    @Schema(description = "Name", example = "Tasty fruit")
+    @Schema(description = "Company name", example = "Tasty fruit")
     private String name;
 }

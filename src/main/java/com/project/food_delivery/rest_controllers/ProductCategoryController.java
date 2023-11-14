@@ -2,6 +2,7 @@ package com.project.food_delivery.rest_controllers;
 
 import com.project.food_delivery.dtos.ProductCategoryAndDescriptionDto;
 import com.project.food_delivery.dtos.ProductCategoryDto;
+import com.project.food_delivery.exceptions.ErrorResponse;
 import com.project.food_delivery.services.ProductCategoryService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,19 +43,23 @@ public class ProductCategoryController {
             @ApiResponse(responseCode = "200", description = "Product categories are found",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ProductCategoryDto.class))}),
-            @ApiResponse(responseCode = "404", description = "Product categories are not found", content = @Content(mediaType = "text/plain"))
+            @ApiResponse(responseCode = "404", description = "Product categories are not found", content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse.class))})
     })
-    public List<ProductCategoryDto> getProductCategories(){
-        return productCategoryService.getProductCategories();
+    public ResponseEntity<List<ProductCategoryDto>> getProductCategories(){
+        return ResponseEntity.ok(productCategoryService.getProductCategories());
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add new product category")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Product category is added", content = @Content(mediaType = "text/plain")),
+            @ApiResponse(responseCode = "201", description = "Product category is added"),
     })
-    public void addProductCategory(@Parameter(description = "Product category", example = "fruit") @RequestBody ProductCategoryAndDescriptionDto productCategoryAndDescription){
+    public void addProductCategory(@Parameter(required = true, content = @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = ProductCategoryAndDescriptionDto.class)
+    )) @RequestBody ProductCategoryAndDescriptionDto productCategoryAndDescription){
         productCategoryService.addProductCategory(productCategoryAndDescription);
     }
 }
