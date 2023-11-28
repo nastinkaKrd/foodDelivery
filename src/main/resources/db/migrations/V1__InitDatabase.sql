@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS public.users
     phone_number character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     user_roles character varying COLLATE pg_catalog."default" NOT NULL,
-    active boolean DEFAULT false,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
 
