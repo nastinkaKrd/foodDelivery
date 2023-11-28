@@ -11,12 +11,13 @@ import com.project.food_delivery.models.User;
 import com.project.food_delivery.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImplements implements UserService{
+public class UserServiceImplements implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final AddressMapper addressMapper;
@@ -97,5 +98,10 @@ public class UserServiceImplements implements UserService{
                     throw new ApiRequestExceptionNotFound("User or address is not found");
                 }
         );
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

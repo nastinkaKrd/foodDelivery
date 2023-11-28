@@ -38,7 +38,6 @@ import java.util.List;
 )
 public class OrderController {
     private final OrderService orderService;
-
     @PutMapping("/{order-id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Change order status")
@@ -80,5 +79,4 @@ public class OrderController {
                                         @Parameter(description = "Payment", example = "cash") @PathVariable(name = "payment") String payment){
         orderService.buildNewOrderFromBasket(username, payment);
     }
-
 }

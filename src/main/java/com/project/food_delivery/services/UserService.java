@@ -12,4 +12,5 @@ public interface UserService {
     void deleteUserAccount(String username);
     void addUserAddressByUsername(String username, AddressDto addressDto);
     void deleteUserAddressByUsername(UsernameAndAddressDto usernameAndAddress);
+    void saveUser(User user);
 }
