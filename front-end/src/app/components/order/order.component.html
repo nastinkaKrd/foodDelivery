@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center align-items-center vh-50">
+            <form class="w-25 form-area text-bg-light">
+                <span class="fs-3 text-center">Change order</span>
+                <hr>
+                <div class="form-group">
+                    <label for="id1">id</label>
+                    <input #id type="number" class="form-control" id="id1" placeholder="Enter id" name="id" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="status1">status</label>
+                    <input #status type="text" class="form-control" id="status1" placeholder="status" name="status" required>
+                </div><br>
+                <button type="submit" class="btn bg-dark-subtle w-100" (click)="changeStatus(id.value, status.value)">change</button>
+            </form>
+        </div>
+    </div>
+</div>

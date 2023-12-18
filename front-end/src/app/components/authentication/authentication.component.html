@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center align-items-center vh-50">
+            <form class="w-25 form-area text-bg-light">
+                <span class="fs-3 text-center">Login form</span>
+                <hr>
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Username</label>
+                    <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp" placeholder="Enter username"  [(ngModel)]="login.username" name="username" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="login.password" name="password" required>
+                </div><br>
+              <button type="submit" class="btn bg-dark-subtle w-100" [routerLink]="['']" (click)="authenticate()">Log in</button>
+                <a href="/auth/register" class="text-decoration-none text-dark-emphasis d-block mt-3">If you don't have account -> register</a>
+            </form>
+        </div>
+    </div>
+</div>

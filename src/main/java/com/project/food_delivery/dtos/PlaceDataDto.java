@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 public class PlaceDataDto {
     @Schema(description = "Name", example = "Metro")
-    String name;
+    private String name;
 
     @Parameter(required = true, content = @Content(
             mediaType = "application/json",
             schema = @Schema(implementation = AddressDto.class)))
-    AddressDto address;
+    private AddressDto address;
 
     @Schema(description = "Place category", example = "Supermarket")
-    String placeCategory;
+    private String placeCategory;
 }

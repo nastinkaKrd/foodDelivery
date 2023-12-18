@@ -32,3 +32,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+front-end/node_modules/
+
+front-end/*.json
+front-end/*.editorconfig
+front-end/.angular/
+front-end/src/environments/

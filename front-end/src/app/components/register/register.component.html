@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center align-items-center">
+            <form class="w-25 form-area text-bg-light">
+                <span class="fs-3 text-center">Registration form</span>
+                <hr>
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Username</label>
+                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Enter username" [(ngModel)]="registerData.username" name="username" required>
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="registerData.email" name="email">
+                </div><br>
+                <div class="form-group">
+                    <label for="phoneNumber1">Phone number</label>
+                    <input type="number" class="form-control" id="phoneNumber1" placeholder="Enter phone number" [(ngModel)]="registerData.phoneNumber" name="phoneNumber">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="registerData.password" name="password">
+                </div><br>
+                <button type="submit" class="btn bg-dark-subtle w-100" (click)="register()">Register</button>
+                <a href="/auth/login" class="text-decoration-none text-dark-emphasis d-block mt-3">If you already have account -> login</a>
+            </form>
+        </div>
+    </div>
+</div>

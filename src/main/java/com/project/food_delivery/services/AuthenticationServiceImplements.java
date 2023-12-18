@@ -47,7 +47,7 @@ public class AuthenticationServiceImplements implements AuthenticationService{
                         authenticationRequest.getPassword()));
         User user = userService.getUserByUsername(authenticationRequest.getUsername());
         String jwtToken = jwtService.generateToken(user);
-        revokeAllUserTokens(user);
+        revokeAllUserTokens(user.getUsername());
         saveUserToken(user, jwtToken);
         return AuthResponseDto.builder()
                 .jwt(jwtToken).build();
@@ -65,8 +65,9 @@ public class AuthenticationServiceImplements implements AuthenticationService{
     }
 
 
-    private void revokeAllUserTokens(User user) {
-        List<Token> tokens = tokenService.getTokensByUser(user);
+    @Override
+    public void revokeAllUserTokens(String username) {
+        List<Token> tokens = tokenService.getTokensByUser(username);
         List<Token> validUserTokens = new ArrayList<>();
         for(Token token: tokens){
             if (!token.getIsExpired() && !token.getIsRevoked()){

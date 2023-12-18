@@ -9,4 +9,6 @@ public interface AuthenticationService {
 
     AuthResponseDto authenticate(AuthenticationRequest authRequest);
 
+    void revokeAllUserTokens(String username);
+
 }

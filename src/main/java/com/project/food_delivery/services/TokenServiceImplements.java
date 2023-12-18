@@ -1,10 +1,10 @@
 package com.project.food_delivery.services;
 
 import com.project.food_delivery.models.Token;
-import com.project.food_delivery.models.User;
 import com.project.food_delivery.repositories.TokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -18,8 +18,8 @@ public class TokenServiceImplements implements TokenService{
     }
 
     @Override
-    public List<Token> getTokensByUser(User user) {
-        return tokenRepository.findByUser(user);
+    public List<Token> getTokensByUser(String username) {
+        return tokenRepository.findByUser_Username(username);
     }
 
     @Override

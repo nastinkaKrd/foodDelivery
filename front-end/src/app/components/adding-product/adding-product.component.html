@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+      <form class="w-25 form-area text-bg-light">
+        <span class="fs-3 text-center">Add product</span>
+        <hr>
+        <div class="form-group">
+          <label for="name1">name</label>
+          <input type="text" class="form-control" id="name1" aria-describedby="emailHelp" placeholder="Enter name" [(ngModel)]="addingData.name" name="name" required>
+        </div><br>
+        <div class="form-group">
+          <label for="category1">category</label>
+          <input type="text" class="form-control" id="category1" placeholder="Enter category" [(ngModel)]="addingData.category" name="category">
+        </div><br>
+        <div class="form-group">
+          <label for="place1">place</label>
+          <input type="text" class="form-control" id="place1" placeholder="Enter place" [(ngModel)]="addingData.place" name="place">
+        </div><br>
+        <div class="form-group">
+          <label for="company1">company</label>
+          <input type="text" class="form-control" id="company1" placeholder="Enter company" [(ngModel)]="addingData.company" name="company">
+        </div><br>
+
+        <div class="form-group">
+          <label for="price1">price</label>
+          <input type="number" class="form-control" id="price1" placeholder="Enter price" [(ngModel)]="addingData.price" name="price">
+        </div><br>
+        <div class="form-group">
+          <label for="weight1">weight</label>
+          <input type="number" class="form-control" id="weight1" placeholder="Enter weight" [(ngModel)]="addingData.weight" name="weight">
+        </div><br>
+        <div class="form-group">
+          <label for="availableAmount1">availableAmount</label>
+          <input type="number" class="form-control" id="availableAmount1" placeholder="Enter available amount" [(ngModel)]="addingData.availableAmount" name="availableAmount">
+        </div><br>
+        <div class="form-group">
+          <label for="weightMeasurement1">weight measurement</label>
+          <input type="text" class="form-control" id="weightMeasurement1" placeholder="Enter weight measurement" [(ngModel)]="addingData.weightMeasurement" name="weightMeasurement">
+        </div><br>
+        <button type="submit" class="btn bg-dark-subtle w-100" (click)="addProduct()">Add</button>
+      </form>
+    </div>
+  </div>
+</div>
+

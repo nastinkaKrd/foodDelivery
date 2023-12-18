@@ -1,0 +1,20 @@
+<h2 class="text-center text-dark-emphasis">Виберіть місце з якого плануєте зробити замовлення</h2>
+<div class="container">
+  <div class="row">
+    <p *ngFor="let place of places" class="col-md-4">
+      <a href="#" class="text-dark-emphasis text-decoration-none">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/images/logo.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ place.name }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <div *ngFor="let address of place.addresses">
+              <li *ngIf="address" class="list-group-item">{{ address.city }}, {{address.street}}, {{address.buildingNum}}</li>
+            </div>
+          </ul>
+        </div>
+      </a>
+    </p>
+  </div>
+</div>
