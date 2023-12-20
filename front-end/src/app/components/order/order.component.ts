@@ -16,10 +16,6 @@ export class OrderComponent {
   constructor(private orderService: OrderService) { }
 
   changeStatus(id: string, status: string) {
-    this.orderService.changeStatus(id, status).subscribe(
-        data =>{
-          console.log(data);
-        }
-    );
+    this.orderService.changeStatus(id, status);
   }
 }

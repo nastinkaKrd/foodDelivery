@@ -41,7 +41,7 @@ export class AppComponent implements OnInit{
   getUsername(): void {
     this.authenticationService.getUserDetails(this.headerService.getAuthHeader()).subscribe(
         (data: string): void => {
-          if (data !== null){
+          if (data){
             this.isAuthenticated = true;
           }
         }

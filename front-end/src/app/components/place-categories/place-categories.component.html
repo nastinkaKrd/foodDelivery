@@ -1,4 +1,6 @@
 <div *ngFor="let placeCategory of placeCategories">
-  <li><a class="dropdown-item" href="/places/category/{{placeCategory.placeCategory}}" routerLinkActive="active-link">{{placeCategory.placeCategory}}</a></li>
+  <li><a class="dropdown-item" [routerLink]="['/places/category', placeCategory.placeCategory]">
+    {{placeCategory.placeCategory}}
+  </a>
+  </li>
 </div>
-<li><a class="dropdown-item" href="add-place-category.html" routerLinkActive="active-link">new</a></li>

@@ -2,14 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {ProductCategory} from "../../common/product-category";
 import {ProductCategoriesService} from "../../services/product-categories.service";
 import {NgForOf} from "@angular/common";
-import {RouterLinkActive} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-product-categories',
   standalone: true,
   imports: [
     NgForOf,
-    RouterLinkActive
+    RouterLinkActive,
+    RouterLink
   ],
   templateUrl: './product-categories.component.html',
   styleUrl: './product-categories.component.css',

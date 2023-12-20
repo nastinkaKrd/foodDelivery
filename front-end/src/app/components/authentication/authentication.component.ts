@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {FormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
+import {AuthenticationRequest} from "../../common/authentication-request";
 
 @Component({
   selector: 'app-authentication',
@@ -15,7 +16,7 @@ import {RouterLink} from "@angular/router";
   providers: [AuthenticationService]
 })
 export class AuthenticationComponent {
-  login:  any ={
+  login:  AuthenticationRequest ={
     "username": "",
     "password": ""
 }

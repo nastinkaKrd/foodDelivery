@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PlaceService} from "../../services/place.service";
 import {CommonModule, NgForOf} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {PlaceDto} from "../../common/place-dto";
 
 @Component({
@@ -22,14 +22,15 @@ export class PlacesComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.listPlacesByCategory();
-    this.listPlacesByCity();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.listPlacesByCategory(params);
+      this.listPlacesByCity(params);
+    });
   }
 
-  listPlacesByCategory() {
-    const hasCategory: boolean = this.route.snapshot.paramMap.has('category');
-    if (hasCategory){
-      this.placeService.getPlacesByCategory(this.route.snapshot.paramMap.get('category')).subscribe(
+  listPlacesByCategory(params: ParamMap) {
+    if (params.has('category')){
+      this.placeService.getPlacesByCategory(params.get('category')).subscribe(
         (data: PlaceDto[]) => {
           this.places = data;
         }
@@ -37,10 +38,9 @@ export class PlacesComponent implements OnInit{
     }
   }
 
-  listPlacesByCity() {
-    const hasCity: boolean = this.route.snapshot.paramMap.has('city');
-    if (hasCity){
-      this.placeService.getPlacesByCity(this.route.snapshot.paramMap.get('city')).subscribe(
+  listPlacesByCity(params: ParamMap) {
+    if (params.has('city')){
+      this.placeService.getPlacesByCity(params.get('city')).subscribe(
           (data: PlaceDto[]) => {
             this.places = data;
           }

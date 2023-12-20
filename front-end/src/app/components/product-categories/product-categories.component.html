@@ -1,4 +1,6 @@
 <div *ngFor="let productCategory of productCategories">
-    <li><a class="dropdown-item" href="/product/category/{{productCategory.productCategory}}" routerLinkActive="active-link">{{productCategory.productCategory}}</a></li>
+  <li><a class="dropdown-item" [routerLink]="['/product/category', productCategory.productCategory]">
+    {{productCategory.productCategory}}
+  </a>
+  </li>
 </div>
-

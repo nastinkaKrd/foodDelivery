@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {FormsModule} from "@angular/forms";
+import {RegisterRequest} from "../../common/register-request";
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerData:  any ={
+  registerData: RegisterRequest ={
     "username": "",
     "email": "",
     "phoneNumber": "",

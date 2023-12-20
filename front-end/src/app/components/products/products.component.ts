@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from "../../common/product";
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {ProductService} from "../../services/product.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -23,13 +23,14 @@ export class ProductsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.listProductsByCategory();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.listProductsByCategory(params);
+    });
   }
 
-  listProductsByCategory() {
-    const hasCategory: boolean = this.route.snapshot.paramMap.has('category');
-    if (hasCategory){
-      this.productService.getProductsByCategory(this.route.snapshot.paramMap.get('category')).subscribe(
+  listProductsByCategory(params: ParamMap) {
+    if (params.has('category')){
+      this.productService.getProductsByCategory(params.get('category')).subscribe(
           (data: Product[]) => {
             this.products = data;
           }
