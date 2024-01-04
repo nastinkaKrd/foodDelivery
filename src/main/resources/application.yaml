@@ -15,3 +15,5 @@ spring:
   springdoc:
     swagger-ui:
       path: ${SWAGGER_URL}
+myapp:
+  secret: ${MYAPP_SECRET}
