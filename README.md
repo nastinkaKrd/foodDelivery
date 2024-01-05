@@ -7,7 +7,9 @@ The web application is being developed for the FoodDel company with the aim of c
 - Java 
 - Spring Boot 
 - Maven 
-- PostgreSQL 
+- PostgreSQL
+- Redis
+- Docker
 ## Installing
 For installing project you must enter this command:
 > git clone https://github.com/nastinkaKrd/foodDelivery.git
